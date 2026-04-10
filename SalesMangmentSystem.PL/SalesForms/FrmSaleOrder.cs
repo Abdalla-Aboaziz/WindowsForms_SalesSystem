@@ -229,7 +229,7 @@ namespace SalesMangmentSystem.PL.SalesForms
                 CalculateTotalInvoice();
             }
             else
-                MessageBox.Show("فشل في تحديث الفاتورة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("فشل في تحديث الفاتورة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error) ;
         }
 
     
