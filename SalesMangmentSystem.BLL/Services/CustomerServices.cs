@@ -1,4 +1,5 @@
-﻿using SalesMangmentSystem.DAL;
+﻿using SalesMangmentSystem.BLL.Dtos;
+using SalesMangmentSystem.DAL;
 using SalesMangmentSystem.DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SalesMangmentSystem.BLL.Services
 {
-    public  class CustomerServices
+    public class CustomerServices
     {
         // Get All Customer
         // Get Customer By Id
@@ -22,7 +23,7 @@ namespace SalesMangmentSystem.BLL.Services
 
         public DateTime BirthData { get; set; }*/
 
-         public static List<Customer> GetAllCustomers()
+        public static List<Customer> GetAllCustomers()
         {
             var dataTable = DataBaseHelper.ExcuteSelect("SELECT * FROM Customers");
             List<Customer> customers = new List<Customer>();
@@ -40,6 +41,21 @@ namespace SalesMangmentSystem.BLL.Services
             return customers;
         }
 
+        public static List<CustomerReadBasicDto> GetAllBasicCustomer()
+        {
+            var dataTable = DataBaseHelper.ExcuteSelect("SELECT ID, Name FROM Customers");
+            List<CustomerReadBasicDto> customers = new List<CustomerReadBasicDto>();
+            foreach (System.Data.DataRow row in dataTable.Rows)
+            {
+                customers.Add(new CustomerReadBasicDto
+                {
+                    ID = Convert.ToInt32(row["Id"]),
+                    Name = row["Name"].ToString(),
+                });
+            }
+            return customers;
 
+
+        }
     }
 }

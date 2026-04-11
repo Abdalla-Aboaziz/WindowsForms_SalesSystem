@@ -44,5 +44,38 @@ namespace SalesMangmentSystem.DAL
                 } // هنا الـ Connection بيتقفل أوتوماتيكياً بفضل الـ using
             }
         }
+
+        public static bool ExcuteTransaction(List<string> commands)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                using (SqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (var command in commands)
+                        {
+                            using (SqlCommand sqlCommand = new SqlCommand(command, connection, transaction))
+                            {
+                                sqlCommand.ExecuteNonQuery();
+                            }
+                        }
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                       
+                        return false;
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
     }
 }

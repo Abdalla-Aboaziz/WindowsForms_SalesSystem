@@ -1,5 +1,7 @@
-﻿using SalesMangmentSystem.BLL.Services;
+﻿using SalesMangmentSystem.BLL.Dtos;
+using SalesMangmentSystem.BLL.Services;
 using SalesMangmentSystem.DAL.Models;
+using Type = SalesMangmentSystem.DAL.Models.Type;
 
 namespace SalesMangmentSystem.PL.SalesForms
 {
@@ -12,70 +14,68 @@ namespace SalesMangmentSystem.PL.SalesForms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (!ValidationInputs()) return;
+            Product product = ProductService.GetProductById(Convert.ToInt32(cbCategory.SelectedValue));
+            if (product != null)
+            {
+                decimal quantity = Convert.ToDecimal(nudCategoryCount.Value);
+                if (quantity > (decimal)product.Quantity)
+                {
+                    MessageBox.Show("الكمية المطلوبة غير متوفرة في المخزون", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                decimal lineTotal = quantity * (decimal)product.SalePrice;
+                // Add Row
+                dgvSaleOrder.Rows.Add(
 
-            // 1. احفظ الأوردر
-            SaleOrder order = new SaleOrder
-            {
-                CustomerID = (int)cbCustomer.SelectedValue,
-                DateOrder = DateTime.Now,
-                TotalOrder = (double)nudSalePrice.Value * (double)nudCategoryCount.Value
-            };
-            bool isAdded = SaleOrderService.AddSaleOrder(order);
-            if (!isAdded)
-            {
-                MessageBox.Show("فشل في إضافة الفاتورة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                   product.ID,
+                     product.Name,
+                     quantity,
+                     product.SalePrice,
+                     lineTotal
+                    );
+
+                // Update Total Invoice
+                nudTotalInvoice.Value += lineTotal;
             }
 
-            // get the new order ID
-            int newID = SaleOrderService.GetLastInsertedID();
-
-            // 3. Save order details
-            SaleOrderProduct detail = new SaleOrderProduct
-            {
-                SaleOrderID = newID,
-                ProductID = (int)cbCategory.SelectedValue,
-                ProductName = cbCategory.Text,
-                ProductPrice = (double)nudSalePrice.Value,
-                ProductQuantity = (double)nudCategoryCount.Value,
-                ProductTotalPrice = (double)nudSalePrice.Value * (double)nudCategoryCount.Value
-            };
-            SaleOrderProductService.AddOrderProduct(detail);
-
-            MessageBox.Show("تمت إضافة الفاتورة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadSaleOrders();
-            CalculateTotalInvoice();
+            //LoadSaleOrders();
+            //CalculateTotalInvoice();
         }
         //
         private void FrmSaleOrdercs_Load(object sender, EventArgs e)
         {
-            btnAdd.Enabled = true;
-            btnDelete.Enabled = false;
 
-            // Load customers and categories into combo boxes
 
-            List<Customer> customers = CustomerServices.GetAllCustomers();
-            cbCustomer.DataSource = customers;
-            cbCustomer.DisplayMember = "Name";
-            cbCustomer.ValueMember = "ID";
-            List<Product> products = ProductService.GetAllProducts();
+
+            List<ProductReadBasicDto> products = ProductService.GetAllBasicProducts();
             cbCategory.DataSource = products;
             cbCategory.DisplayMember = "Name";
             cbCategory.ValueMember = "ID";
-            LoadSaleOrders();
-                CalculateTotalInvoice();
+
+            List<CustomerReadBasicDto> customers = CustomerServices.GetAllBasicCustomer();
+            cbCustomer.DataSource = customers;
+            cbCustomer.DisplayMember = "Name";
+            cbCustomer.ValueMember = "ID";
+
+            txtID.Text = (SaleOrderService.GetLastInsertedID() + 1).ToString();
+
+           
         }
 
         private void dgvProduct_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex < 0) return;
-            DisableWhenEditorDelete();
+            
+            if (e.RowIndex < 0 || e.RowIndex == dgvSaleOrder.NewRowIndex) return;
 
-            SaleOrderProduct selected = (SaleOrderProduct)dgvProduct.CurrentRow.DataBoundItem;
-            txtID.Text = selected.SaleOrderID.ToString();
-            nudSalePrice.Value = (decimal)selected.ProductPrice;
-            nudCategoryCount.Value = (decimal)selected.ProductQuantity;
+            DataGridViewRow row = dgvSaleOrder.Rows[e.RowIndex];
+
+           
+            if (row.Cells[0].Value != null)
+            {
+               
+                nudCategoryCount.Value = Convert.ToDecimal(row.Cells[2].Value);
+
+            }
         }
 
 
@@ -84,93 +84,49 @@ namespace SalesMangmentSystem.PL.SalesForms
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
-            DisableWhenEditorDelete();
+            //DisableWhenEditorDelete();
 
-           
+
             if (string.IsNullOrEmpty(txtID.Text))
             {
                 MessageBox.Show("من فضلك اختر فاتورة من القائمة", "تأكيد", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (MessageBox.Show("هل أنت متأكد من حذف هذه الفاتورة؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                if (dgvSaleOrder.CurrentRow.Cells[0].Value != null)
+                {
 
-            if (MessageBox.Show("هل أنت متأكد من حذف هذه الفاتورة؟", "تأكيد الحذف",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+                    int index = dgvSaleOrder.CurrentRow.Index;
+                    decimal lineTotal = Convert.ToDecimal(dgvSaleOrder.Rows[index].Cells[4].Value);
 
-            int orderID = int.Parse(txtID.Text);
-            SaleOrderProductService.DeleteByOrderId(orderID);
+                    // Remove Row
+                    dgvSaleOrder.Rows.RemoveAt(index);
+                    //Update Total Invoice
+                    nudTotalInvoice.Value -= lineTotal;
+                    MessageBox.Show("تم حذف الفاتورة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                    MessageBox.Show("فشل في حذف الفاتورة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            bool isDeleted = SaleOrderService.DeleteSaleOrder(orderID);
-            if (isDeleted)
-                MessageBox.Show("تم حذف الفاتورة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show("فشل في حذف الفاتورة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            LoadSaleOrders();
-            CalculateTotalInvoice();
+            }
+
+
+
+          
         }
 
 
 
 
-
-        #region  Helper Methods
 
       
-        private void LoadSaleOrders()
-        {
-            var orders = SaleOrderService.GetAllSaleOrders();
-            var allDetails = new List<SaleOrderProduct>();
-            foreach (var o in orders)
-            {
-                var details = SaleOrderProductService.GetByOrderId(o.ID);
-                allDetails.AddRange(details);
-            }
-            dgvProduct.AutoGenerateColumns = false;
-            dgvProduct.DataSource = allDetails;
-        }
-        private bool ValidationInputs()
-        {
-
-            if (nudSalePrice.Value <= 0)
-            {
-                MessageBox.Show("من فضلك ادخل سعر بيع صالح ", "تاكيد", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (cbCustomer.SelectedIndex == -1)
-            {
-                MessageBox.Show("من فضلك اخترالعميل  ", "تاكيد", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (nudCategoryCount.Value <= 0)
-            {
-                MessageBox.Show("من فضلك ادخل كمية صالحة", "تأكيد", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-
-            return true;
-        }
-
-        private void DisableWhenEditorDelete()
-        {
-            btnAdd.Enabled = false;
-            btnDelete.Enabled = true;
-
-        }
-        private void CalculateTotalInvoice()
-        {
-
-            var list = dgvProduct.DataSource as List<SaleOrderProduct>;
-            if (list == null) return;
-            nudTotalInvoice.Value = (decimal)list.Sum(d => d.ProductTotalPrice);
-        }
-        #endregion
-
 
         //
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
 
         }
 
@@ -191,47 +147,82 @@ namespace SalesMangmentSystem.PL.SalesForms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtID.Text))
+            if (dgvSaleOrder.Rows.Count > 0)
             {
-                MessageBox.Show("من فضلك اختر فاتورة من القائمة", "تأكيد", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                // Insert Sales Order 
+
+                SaleOrder saleOrder = new SaleOrder
+                {
+                    ID = Convert.ToInt32(txtID.Text),
+                    CustomerID = Convert.ToInt32(cbCustomer.SelectedValue),
+                    DateOrder = DateTime.Now,
+                    TotalOrder = Convert.ToDouble(nudTotalInvoice.Value)
+                };
+                // Insert Sales Order Products
+                List<SaleOrderProduct> saleOrderproducts = new List<SaleOrderProduct>();
+
+                for (int i = 0; i < dgvSaleOrder.Rows.Count - 1; i++)
+                {
+                    saleOrderproducts.Add(new SaleOrderProduct
+                    {
+                        SaleOrderID = Convert.ToInt32(txtID.Text),
+                        ProductID = Convert.ToInt32(dgvSaleOrder.Rows[i].Cells[0].Value),
+                        ProductQuantity = Convert.ToDouble(dgvSaleOrder.Rows[i].Cells[2].Value),
+                        ProductPrice = Convert.ToDouble(dgvSaleOrder.Rows[i].Cells[3].Value),
+                        ProductTotalPrice = Convert.ToDouble(dgvSaleOrder.Rows[i].Cells[4].Value)
+                    });
+
+                }
+                // Update Product (for quantity in stock)
+                List<Product> products = new List<Product>();
+                for (int i = 0; i < dgvSaleOrder.Rows.Count - 1; i++)
+                {
+                    products.Add(new Product
+                    {
+                        ID = Convert.ToInt32(dgvSaleOrder.Rows[i].Cells[0].Value),
+                        Quantity = Convert.ToDouble(dgvSaleOrder.Rows[i].Cells[2].Value)
+                    });
+                }
+                Stock stock = new Stock
+                {
+                    ID = 1, // Assuming you have only one stock
+                    TotalMoney = Convert.ToDouble(nudTotalInvoice.Value),
+                };
+                // Update4 Stock
+                StockDetails stockDetails = new StockDetails
+                {
+                    StockID = 1, // Assuming you have only one stock
+                    Date = DateTime.Now,
+                    Total = Convert.ToDouble(nudTotalInvoice.Value),
+                    Type = Type.Sale,
+                };
+                bool IsSaleOrderInserted = SaleOrderService
+                    .InsertSaleOrderTransaction(
+                    saleOrder,
+                    saleOrderproducts,
+                    products,
+                    stock,
+                    stockDetails
+                    );
+                if (IsSaleOrderInserted)
+                {
+                    MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("فشل في حفظ الفاتورة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                // Clear Form
+                dgvSaleOrder.Rows.Clear();
+                txtID.Text= string.Empty;
+                nudTotalInvoice.Value = 0;
+                nudCategoryCount.Value = 1;
+                txtID.Text = (SaleOrderService.GetLastInsertedID() + 1).ToString(); 
+
+
             }
-            if (cbCustomer.SelectedIndex == -1)
-            {
-                MessageBox.Show("من فضلك اختر العميل", "تأكيد", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            int orderID = int.Parse(txtID.Text);
-
-            bool isUpdated = SaleOrderService.SaveSaleOrder(new SaleOrder
-            {
-                ID = orderID,
-                CustomerID = (int)cbCustomer.SelectedValue,
-                DateOrder = DateTime.Now,
-                TotalOrder = (double)nudSalePrice.Value * (double)nudCategoryCount.Value
-            });
-
-            SaleOrderProductService.UpdateByOrderId(new SaleOrderProduct
-            {
-                SaleOrderID = orderID,
-                ProductID = (int)cbCategory.SelectedValue,
-                ProductName = cbCategory.Text,
-                ProductPrice = (double)nudSalePrice.Value,
-                ProductQuantity = (double)nudCategoryCount.Value,
-                ProductTotalPrice = (double)nudSalePrice.Value * (double)nudCategoryCount.Value
-            });
-
-            if (isUpdated)
-            {
-                MessageBox.Show("تم تحديث الفاتورة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadSaleOrders();
-                CalculateTotalInvoice();
-            }
-            else
-                MessageBox.Show("فشل في تحديث الفاتورة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error) ;
         }
 
-    
+
     }
 }

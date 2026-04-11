@@ -48,31 +48,63 @@ namespace SalesMangmentSystem.BLL.Services
             }
             return list;
         }
-        public static bool AddOrderProduct(SaleOrderProduct item)
+        //    public static bool AddOrderProduct(SaleOrderProduct item)
+        //    {
+        //        return DataBaseHelper.ExcuteDML($@"
+        //                                        INSERT INTO SALEORDERPRODUCTS 
+        //                                            (ORDERID, PRODUCTID, PRODUCTPRICE, PRODUCTQUANTITY, PRODUCTTOTALPRICE)
+        //                                        VALUES 
+        //                                            ({item.SaleOrderID}, {item.ProductID}, {item.ProductPrice}, 
+        //                                             {item.ProductQuantity}, {item.ProductTotalPrice})
+        //                                         ");
+        //    }
+        //    public static bool DeleteByOrderId(int orderID)
+        //    {
+        //        return DataBaseHelper.ExcuteDML($"DELETE FROM SALEORDERPRODUCTS WHERE ORDERID = {orderID}");
+        //    }
+        //    public static bool UpdateByOrderId(SaleOrderProduct item)
+        //    {
+        //        return DataBaseHelper.ExcuteDML($@"
+        //    UPDATE SALEORDERPRODUCTS SET
+        //        PRODUCTID = {item.ProductID},
+        //        PRODUCTPRICE = {item.ProductPrice},
+        //        PRODUCTQUANTITY = {item.ProductQuantity},
+        //        PRODUCTTOTALPRICE = {item.ProductTotalPrice}
+        //    WHERE ORDERID = {item.SaleOrderID}
+        //");
+        //    }
+
+
+        public static bool AddSaleOrderProducts(List<SaleOrderProduct> saleOrderproducts)
         {
-            return DataBaseHelper.ExcuteDML($@"
-                                            INSERT INTO SALEORDERPRODUCTS 
-                                                (ORDERID, PRODUCTID, PRODUCTPRICE, PRODUCTQUANTITY, PRODUCTTOTALPRICE)
-                                            VALUES 
-                                                ({item.SaleOrderID}, {item.ProductID}, {item.ProductPrice}, 
-                                                 {item.ProductQuantity}, {item.ProductTotalPrice})
-                                             ");
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var product in saleOrderproducts)
+            {
+                stringBuilder.Append($"({product.SaleOrderID}, {product.ProductID}, {product.ProductPrice}, " +
+                    $"{product.ProductQuantity}, {product.ProductTotalPrice}),");
+
+            }
+            string command=stringBuilder.ToString().TrimEnd(',');
+            string cmd=$"INSERT INTO SALEORDERPRODUCTS (ORDERID, PRODUCTID, PRODUCTPRICE, PRODUCTQUANTITY, PRODUCTTOTALPRICE) VALUES {command}";
+            bool result = DataBaseHelper.ExcuteDML(cmd);
+            return result;
         }
-        public static bool DeleteByOrderId(int orderID)
+
+        public static string AddSaleOrderProductsGetCommand(List<SaleOrderProduct> saleOrderproducts)
         {
-            return DataBaseHelper.ExcuteDML($"DELETE FROM SALEORDERPRODUCTS WHERE ORDERID = {orderID}");
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var product in saleOrderproducts)
+            {
+                stringBuilder.Append($"({product.SaleOrderID}, {product.ProductID}, {product.ProductPrice}, " +
+                    $"{product.ProductQuantity}, {product.ProductTotalPrice}),");
+            }
+            string command = stringBuilder.ToString().TrimEnd(',');
+            string cmd = $"INSERT INTO SALEORDERPRODUCTS (ORDERID, PRODUCTID, PRODUCTPRICE, PRODUCTQUANTITY, PRODUCTTOTALPRICE) VALUES {command}";
+            return cmd;
+
         }
-        public static bool UpdateByOrderId(SaleOrderProduct item)
-        {
-            return DataBaseHelper.ExcuteDML($@"
-        UPDATE SALEORDERPRODUCTS SET
-            PRODUCTID = {item.ProductID},
-            PRODUCTPRICE = {item.ProductPrice},
-            PRODUCTQUANTITY = {item.ProductQuantity},
-            PRODUCTTOTALPRICE = {item.ProductTotalPrice}
-        WHERE ORDERID = {item.SaleOrderID}
-    ");
-        }
+
+        
 
     }
      

@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SalesMangmentSystem.DAL.Models
+namespace SalesMangmentSystem.BLL.Dtos
 {
-    public class Stock
+    public class CustomerReadBasicDto
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public double TotalMoney { get; set; }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using SalesMangmentSystem.BLL.Dtos;
 using SalesMangmentSystem.DAL;
 using SalesMangmentSystem.DAL.Models;
 using System;
@@ -75,7 +76,7 @@ namespace SalesMangmentSystem.BLL.Services
         }
         public static bool AddProduct(Product product)
         {
-            bool result= DataBaseHelper.ExcuteDML($"INSERT INTO Products (Name, BuyPrice, SalePrice, Quantity, CATEGORY) VALUES (N'{product.Name}', {product.BuyPrice}, {product.SalePrice}, {product.Quantity}, {product.CategoryID})");
+            bool result = DataBaseHelper.ExcuteDML($"INSERT INTO Products (Name, BuyPrice, SalePrice, Quantity, CATEGORY) VALUES (N'{product.Name}', {product.BuyPrice}, {product.SalePrice}, {product.Quantity}, {product.CategoryID})");
             return result;
         }
         public static bool UpdateProduct(Product product)
@@ -94,5 +95,41 @@ namespace SalesMangmentSystem.BLL.Services
             return result;
         }
 
+        public static List<ProductReadBasicDto> GetAllBasicProducts()
+        {
+            var dataTable = DataBaseHelper.ExcuteSelect("SELECT ID, Name FROM Products");
+            List<ProductReadBasicDto> products = new List<ProductReadBasicDto>();
+            foreach (System.Data.DataRow row in dataTable.Rows)
+            {
+                products.Add(new ProductReadBasicDto
+                {
+                    ID = Convert.ToInt32(row["Id"]),
+                    Name = row["Name"].ToString()
+                });
+            }
+            return products;
+
+
+
+        }
+
+        public static string UpdateProductMinusQuantityGetCommand(List<Product> products)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var product in products)
+            {
+                stringBuilder.Append($"UPDATE Products SET Quantity = Quantity - {product.Quantity} WHERE Id = {product.ID}; ");
+                stringBuilder.Append("\n");
+            }
+            string command = stringBuilder.ToString();
+            return command;
+
+        }
+
+        public static bool updateProductPlus(int id, double quantity)
+        {
+            bool result = DataBaseHelper.ExcuteDML($"UPDATE Products SET Quantity = Quantity + {quantity} WHERE Id = {id}");
+            return result;
+        }
     }
 }

@@ -38,9 +38,12 @@
             label2 = new Label();
             btnAdd = new Button();
             btnDelete = new Button();
-            dgvProduct = new DataGridView();
-            nudSalePrice = new NumericUpDown();
-            label4 = new Label();
+            dgvSaleOrder = new DataGridView();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
             label6 = new Label();
             cbCustomer = new ComboBox();
             label7 = new Label();
@@ -48,16 +51,10 @@
             cbCategory = new ComboBox();
             label3 = new Label();
             nudCategoryCount = new NumericUpDown();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudTotalInvoice).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudSalePrice).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSaleOrder).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudCategoryCount).BeginInit();
             SuspendLayout();
             // 
@@ -167,98 +164,19 @@
             btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
-            // dgvProduct
+            // dgvSaleOrder
             // 
-            dgvProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvProduct.BackgroundColor = Color.MistyRose;
-            dgvProduct.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProduct.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column5, Column3, Column4 });
-            dgvProduct.Location = new Point(0, 572);
-            dgvProduct.Name = "dgvProduct";
-            dgvProduct.RowHeadersWidth = 51;
-            dgvProduct.Size = new Size(1372, 242);
-            dgvProduct.TabIndex = 13;
-            dgvProduct.CellContentClick += dgvProduct_CellContentClick;
-            dgvProduct.CellMouseClick += dgvProduct_CellMouseClick;
-            // 
-            // nudSalePrice
-            // 
-            nudSalePrice.DecimalPlaces = 2;
-            nudSalePrice.Location = new Point(1020, 246);
-            nudSalePrice.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
-            nudSalePrice.Name = "nudSalePrice";
-            nudSalePrice.Size = new Size(250, 27);
-            nudSalePrice.TabIndex = 16;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(1198, 223);
-            label4.Name = "label4";
-            label4.Size = new Size(66, 20);
-            label4.TabIndex = 19;
-            label4.Text = "سعر البيع ";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(455, 202);
-            label6.Name = "label6";
-            label6.Size = new Size(46, 20);
-            label6.TabIndex = 23;
-            label6.Text = "التاريخ";
-            // 
-            // cbCustomer
-            // 
-            cbCustomer.FormattingEnabled = true;
-            cbCustomer.Location = new Point(251, 138);
-            cbCustomer.Name = "cbCustomer";
-            cbCustomer.Size = new Size(250, 28);
-            cbCustomer.TabIndex = 24;
-            cbCustomer.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(434, 116);
-            label7.Name = "label7";
-            label7.Size = new Size(44, 20);
-            label7.TabIndex = 25;
-            label7.Text = "العميل";
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(251, 223);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 26;
-            // 
-            // cbCategory
-            // 
-            cbCategory.FormattingEnabled = true;
-            cbCategory.Location = new Point(875, 538);
-            cbCategory.Name = "cbCategory";
-            cbCategory.Size = new Size(434, 28);
-            cbCategory.TabIndex = 27;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(1252, 515);
-            label3.Name = "label3";
-            label3.Size = new Size(57, 20);
-            label3.TabIndex = 28;
-            label3.Text = "الاصناف";
-            // 
-            // nudCategoryCount
-            // 
-            nudCategoryCount.Location = new Point(619, 538);
-            nudCategoryCount.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
-            nudCategoryCount.Name = "nudCategoryCount";
-            nudCategoryCount.Size = new Size(250, 27);
-            nudCategoryCount.TabIndex = 29;
-            nudCategoryCount.TextAlign = HorizontalAlignment.Center;
+            dgvSaleOrder.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSaleOrder.BackgroundColor = Color.MistyRose;
+            dgvSaleOrder.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSaleOrder.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column5, Column3, Column4 });
+            dgvSaleOrder.Location = new Point(0, 572);
+            dgvSaleOrder.Name = "dgvSaleOrder";
+            dgvSaleOrder.RowHeadersWidth = 51;
+            dgvSaleOrder.Size = new Size(1372, 242);
+            dgvSaleOrder.TabIndex = 13;
+            dgvSaleOrder.CellContentClick += dgvProduct_CellContentClick;
+            dgvSaleOrder.CellMouseClick += dgvProduct_CellMouseClick;
             // 
             // Column1
             // 
@@ -295,6 +213,67 @@
             Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(823, 113);
+            label6.Name = "label6";
+            label6.Size = new Size(46, 20);
+            label6.TabIndex = 23;
+            label6.Text = "التاريخ";
+            // 
+            // cbCustomer
+            // 
+            cbCustomer.FormattingEnabled = true;
+            cbCustomer.Location = new Point(228, 138);
+            cbCustomer.Name = "cbCustomer";
+            cbCustomer.Size = new Size(250, 28);
+            cbCustomer.TabIndex = 24;
+            cbCustomer.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(411, 116);
+            label7.Name = "label7";
+            label7.Size = new Size(44, 20);
+            label7.TabIndex = 25;
+            label7.Text = "العميل";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
+            dateTimePicker1.Location = new Point(619, 136);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 27);
+            dateTimePicker1.TabIndex = 26;
+            // 
+            // cbCategory
+            // 
+            cbCategory.FormattingEnabled = true;
+            cbCategory.Location = new Point(875, 538);
+            cbCategory.Name = "cbCategory";
+            cbCategory.Size = new Size(434, 28);
+            cbCategory.TabIndex = 27;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(1252, 515);
+            label3.Name = "label3";
+            label3.Size = new Size(57, 20);
+            label3.TabIndex = 28;
+            label3.Text = "الاصناف";
+            // 
+            // nudCategoryCount
+            // 
+            nudCategoryCount.Location = new Point(619, 538);
+            nudCategoryCount.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            nudCategoryCount.Name = "nudCategoryCount";
+            nudCategoryCount.Size = new Size(250, 27);
+            nudCategoryCount.TabIndex = 29;
+            nudCategoryCount.TextAlign = HorizontalAlignment.Center;
+            // 
             // FrmSaleOrdercs
             // 
             AutoScaleDimensions = new SizeF(11F, 20F);
@@ -308,9 +287,7 @@
             Controls.Add(label7);
             Controls.Add(cbCustomer);
             Controls.Add(label6);
-            Controls.Add(label4);
-            Controls.Add(nudSalePrice);
-            Controls.Add(dgvProduct);
+            Controls.Add(dgvSaleOrder);
             Controls.Add(btnDelete);
             Controls.Add(btnAdd);
             Controls.Add(label2);
@@ -330,8 +307,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudTotalInvoice).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvProduct).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudSalePrice).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSaleOrder).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudCategoryCount).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -346,9 +322,7 @@
         private Label label2;
         private Button btnAdd;
         private Button btnDelete;
-        private DataGridView dgvProduct;
-        private NumericUpDown nudSalePrice;
-        private Label label4;
+        private DataGridView dgvSaleOrder;
         private Label label5;
         private NumericUpDown nudTotalInvoice;
         private Label label6;

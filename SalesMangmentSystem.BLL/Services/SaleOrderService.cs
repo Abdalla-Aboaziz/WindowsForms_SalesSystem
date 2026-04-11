@@ -54,9 +54,38 @@ namespace SalesMangmentSystem.BLL.Services
 
         public static int GetLastInsertedID()
         {
-            var dt = DataBaseHelper.ExcuteSelect("SELECT TOP 1 ID FROM SALEORDERS ORDER BY ID DESC");
-            return Convert.ToInt32(dt.Rows[0]["ID"]);
+            var dt = DataBaseHelper.ExcuteSelect("SELECT ISNULL(MAX(ID),0) AS LASTORDERID FROM SALEORDERS");
+      
+            return Convert.ToInt32(dt.Rows[0]["LASTORDERID"]);
         }
 
+        public static bool InsertSaleOrderTransaction(SaleOrder saleOrder, List<SaleOrderProduct> saleOrderproducts, List<Product> products, Stock stock, StockDetails stockDetails)
+        {
+            List<string> commands = new List<string>();
+            // Insert Sale Order
+            string addSaleOrderCommand= SaleOrderService.AddSaleOrderGetCommand(saleOrder);
+            commands.Add(addSaleOrderCommand);
+            // Insert Sale Order Products
+            string addSaleOrderProductsCommand = SaleOrderProductService.AddSaleOrderProductsGetCommand(saleOrderproducts);
+            commands.Add(addSaleOrderProductsCommand);
+            // Update Products Quantity Minus
+            string updateProductMinusQuantityCommand = ProductService.UpdateProductMinusQuantityGetCommand(products);
+            commands.Add(updateProductMinusQuantityCommand);
+            // Update Stock Plus Money
+            string updateStockPlusMoneyCommand = StockService.UpdateStockMoneyPlusGetCommand(stock);
+            commands.Add(updateStockPlusMoneyCommand);
+            // Insert Stock Details
+            string insertStockDetailsCommand = StockDetailsService.AddStockDetailsGetCommand(stockDetails);
+            commands.Add(insertStockDetailsCommand);
+
+            bool result = DataBaseHelper.ExcuteTransaction(commands);
+            return result;
+        }
+
+        private static string AddSaleOrderGetCommand(SaleOrder saleOrder)
+        {
+            string command = $"INSERT INTO SaleOrders (CustomerID, DateOrder, TotalOrder) VALUES ({saleOrder.CustomerID}, '{saleOrder.DateOrder:yyyy-MM-dd HH:mm:ss}', {saleOrder.TotalOrder})";
+            return command;
+        }
     }
 }
