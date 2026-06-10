@@ -35,5 +35,11 @@ namespace SalesMangmentSystem.PL
             FrmSaleOrdercs frmSaleOrdercs = new FrmSaleOrdercs();
             frmSaleOrdercs.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FrmCustomer frmCustomer = new FrmCustomer();
+            frmCustomer.ShowDialog();
+        }
     }
 }

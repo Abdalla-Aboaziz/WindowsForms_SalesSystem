@@ -31,6 +31,7 @@
             button1 = new Button();
             button3 = new Button();
             SaleOrder = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -55,7 +56,7 @@
             // 
             // SaleOrder
             // 
-            SaleOrder.Location = new Point(335, 410);
+            SaleOrder.Location = new Point(147, 378);
             SaleOrder.Name = "SaleOrder";
             SaleOrder.Size = new Size(118, 70);
             SaleOrder.TabIndex = 3;
@@ -63,11 +64,22 @@
             SaleOrder.UseVisualStyleBackColor = true;
             SaleOrder.Click += SaleOrder_Click;
             // 
+            // button2
+            // 
+            button2.Location = new Point(488, 423);
+            button2.Name = "button2";
+            button2.Size = new Size(186, 70);
+            button2.TabIndex = 4;
+            button2.Text = "ادارة العملاء ";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(15F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(871, 720);
+            Controls.Add(button2);
             Controls.Add(SaleOrder);
             Controls.Add(button3);
             Controls.Add(button1);
@@ -83,5 +95,6 @@
         private Button button1;
         private Button button3;
         private Button SaleOrder;
+        private Button button2;
     }
 }

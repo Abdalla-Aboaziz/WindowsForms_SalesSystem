@@ -1,6 +1,6 @@
 ﻿namespace SalesMangmentSystem.PL.SalesForms
 {
-    partial class FrmProduct
+    partial class FrmCustomer
     {
         /// <summary>
         /// Required designer variable.
@@ -45,26 +45,20 @@
             btnUpdate = new Button();
             btnNew = new Button();
             txtSearch = new TextBox();
-            dgvProduct = new DataGridView();
+            dgvCustomer = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            nudSalePrice = new NumericUpDown();
-            label4 = new Label();
-            label5 = new Label();
-            nudBuyPrice = new NumericUpDown();
+            DateOfBirth = new DataGridViewTextBoxColumn();
             label6 = new Label();
-            nudQuentity = new NumericUpDown();
-            cbCategory = new ComboBox();
             label7 = new Label();
+            txtphonenumber = new TextBox();
+            textBox2 = new TextBox();
+            txtdateofbirth = new DateTimePicker();
+            label4 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudSalePrice).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudBuyPrice).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudQuentity).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCustomer).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -74,7 +68,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1372, 78);
+            panel1.Size = new Size(1375, 78);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -84,9 +78,9 @@
             label1.ForeColor = Color.FromArgb(4, 150, 255);
             label1.Location = new Point(588, 18);
             label1.Name = "label1";
-            label1.Size = new Size(207, 52);
+            label1.Size = new Size(179, 52);
             label1.TabIndex = 0;
-            label1.Text = "شاشة الأصناف";
+            label1.Text = "ادارة العملاء";
             // 
             // panel2
             // 
@@ -94,7 +88,7 @@
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 827);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1372, 50);
+            panel2.Size = new Size(1375, 50);
             panel2.TabIndex = 1;
             // 
             // txtID
@@ -117,6 +111,7 @@
             txtName.Name = "txtName";
             txtName.Size = new Size(250, 32);
             txtName.TabIndex = 3;
+            txtName.TextChanged += txtName_TextChanged;
             // 
             // label2
             // 
@@ -124,9 +119,9 @@
             label2.ForeColor = Color.LightGray;
             label2.Location = new Point(1029, 114);
             label2.Name = "label2";
-            label2.Size = new Size(77, 25);
+            label2.Size = new Size(79, 25);
             label2.TabIndex = 4;
-            label2.Text = "رقم الصنف ";
+            label2.Text = "رقم العميل ";
             // 
             // label3
             // 
@@ -134,9 +129,9 @@
             label3.ForeColor = Color.LightGray;
             label3.Location = new Point(700, 114);
             label3.Name = "label3";
-            label3.Size = new Size(76, 25);
+            label3.Size = new Size(82, 25);
             label3.TabIndex = 5;
-            label3.Text = "اسم الصنف";
+            label3.Text = "اسم العميل ";
             // 
             // btnSearch
             // 
@@ -244,15 +239,15 @@
             txtSearch.Size = new Size(365, 32);
             txtSearch.TabIndex = 12;
             // 
-            // dgvProduct
+            // dgvCustomer
             // 
-            dgvProduct.AllowUserToAddRows = false;
-            dgvProduct.AllowUserToDeleteRows = false;
-            dgvProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvProduct.BackgroundColor = Color.FromArgb(30, 30, 30);
-            dgvProduct.BorderStyle = BorderStyle.None;
-            dgvProduct.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvProduct.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvCustomer.AllowUserToAddRows = false;
+            dgvCustomer.AllowUserToDeleteRows = false;
+            dgvCustomer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCustomer.BackgroundColor = Color.FromArgb(30, 30, 30);
+            dgvCustomer.BorderStyle = BorderStyle.None;
+            dgvCustomer.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvCustomer.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(45, 45, 48);
             dataGridViewCellStyle1.Font = new Font("Droid Arabic Kufi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -260,9 +255,9 @@
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(45, 45, 48);
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgvProduct.ColumnHeadersHeight = 40;
-            dgvProduct.Columns.AddRange(new DataGridViewColumn[] { Column1, Column3, Column4, Column5, Column6, Column2 });
+            dgvCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvCustomer.ColumnHeadersHeight = 40;
+            dgvCustomer.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, DateOfBirth });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(30, 30, 30);
             dataGridViewCellStyle2.Font = new Font("Droid Arabic Kufi", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -270,13 +265,13 @@
             dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(4, 150, 255);
             dataGridViewCellStyle2.SelectionForeColor = Color.White;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvProduct.DefaultCellStyle = dataGridViewCellStyle2;
-            dgvProduct.EnableHeadersVisualStyles = false;
-            dgvProduct.GridColor = Color.FromArgb(70, 70, 75);
-            dgvProduct.Location = new Point(0, 582);
-            dgvProduct.Name = "dgvProduct";
-            dgvProduct.ReadOnly = true;
-            dgvProduct.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvCustomer.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvCustomer.EnableHeadersVisualStyles = false;
+            dgvCustomer.GridColor = Color.FromArgb(70, 70, 75);
+            dgvCustomer.Location = new Point(0, 582);
+            dgvCustomer.Name = "dgvCustomer";
+            dgvCustomer.ReadOnly = true;
+            dgvCustomer.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(45, 45, 48);
             dataGridViewCellStyle3.Font = new Font("Droid Arabic Kufi", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -284,162 +279,131 @@
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(4, 150, 255);
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvProduct.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgvProduct.RowHeadersVisible = false;
-            dgvProduct.RowHeadersWidth = 51;
-            dgvProduct.RowTemplate.Height = 40;
-            dgvProduct.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProduct.Size = new Size(1372, 242);
-            dgvProduct.TabIndex = 13;
-            dgvProduct.CellContentClick += dgvProduct_CellContentClick;
-            dgvProduct.CellMouseClick += dgvProduct_CellMouseClick;
+            dgvCustomer.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvCustomer.RowHeadersVisible = false;
+            dgvCustomer.RowHeadersWidth = 51;
+            dgvCustomer.RowTemplate.Height = 40;
+            dgvCustomer.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCustomer.Size = new Size(1372, 242);
+            dgvCustomer.TabIndex = 13;
+            dgvCustomer.CellContentClick += dgvCustomer_CellContentClick;
+            dgvCustomer.CellMouseClick += dgvCustomer_CellMouseClick;
             // 
             // Column1
             // 
             Column1.DataPropertyName = "ID";
-            Column1.HeaderText = "رقم الصنف";
+            Column1.HeaderText = "رقم العميل ";
             Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
             Column1.ReadOnly = true;
             // 
+            // Column2
+            // 
+            Column2.DataPropertyName = "Name";
+            Column2.HeaderText = "اسم العميل ";
+            Column2.MinimumWidth = 6;
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            // 
             // Column3
             // 
-            Column3.DataPropertyName = "Quantity";
-            Column3.HeaderText = "الكمية ";
+            Column3.DataPropertyName = "Phone";
+            Column3.HeaderText = "رقم الهاتف";
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
             Column3.ReadOnly = true;
             // 
             // Column4
             // 
-            Column4.DataPropertyName = "SalePrice";
-            Column4.HeaderText = "سعر الشراء ";
+            Column4.DataPropertyName = "Address";
+            Column4.HeaderText = "العنوان";
             Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
             Column4.ReadOnly = true;
             // 
-            // Column5
+            // DateOfBirth
             // 
-            Column5.DataPropertyName = "BuyPrice";
-            Column5.HeaderText = "سعر البيع ";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            Column6.DataPropertyName = "CategoryID";
-            Column6.HeaderText = "المجموعة";
-            Column6.MinimumWidth = 6;
-            Column6.Name = "Column6";
-            Column6.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            Column2.DataPropertyName = "Name";
-            Column2.HeaderText = "اسم الصنف";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            // 
-            // nudSalePrice
-            // 
-            nudSalePrice.BackColor = Color.FromArgb(60, 60, 65);
-            nudSalePrice.BorderStyle = BorderStyle.FixedSingle;
-            nudSalePrice.ForeColor = Color.White;
-            nudSalePrice.Location = new Point(855, 229);
-            nudSalePrice.Name = "nudSalePrice";
-            nudSalePrice.Size = new Size(250, 32);
-            nudSalePrice.TabIndex = 16;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.ForeColor = Color.LightGray;
-            label4.Location = new Point(1039, 201);
-            label4.Name = "label4";
-            label4.Size = new Size(69, 25);
-            label4.TabIndex = 19;
-            label4.Text = "سعر البيع ";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.ForeColor = Color.LightGray;
-            label5.Location = new Point(700, 201);
-            label5.Name = "label5";
-            label5.Size = new Size(79, 25);
-            label5.TabIndex = 21;
-            label5.Text = "سعر الشراء ";
-            // 
-            // nudBuyPrice
-            // 
-            nudBuyPrice.BackColor = Color.FromArgb(60, 60, 65);
-            nudBuyPrice.BorderStyle = BorderStyle.FixedSingle;
-            nudBuyPrice.ForeColor = Color.White;
-            nudBuyPrice.Location = new Point(532, 229);
-            nudBuyPrice.Name = "nudBuyPrice";
-            nudBuyPrice.Size = new Size(250, 32);
-            nudBuyPrice.TabIndex = 20;
+            DateOfBirth.DataPropertyName = "BirthData";
+            DateOfBirth.HeaderText = "تاريخ الميلاد";
+            DateOfBirth.MinimumWidth = 6;
+            DateOfBirth.Name = "DateOfBirth";
+            DateOfBirth.ReadOnly = true;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.ForeColor = Color.LightGray;
-            label6.Location = new Point(408, 114);
+            label6.Location = new Point(381, 114);
             label6.Name = "label6";
-            label6.Size = new Size(53, 25);
+            label6.Size = new Size(78, 25);
             label6.TabIndex = 23;
-            label6.Text = "الكمية ";
-            // 
-            // nudQuentity
-            // 
-            nudQuentity.BackColor = Color.FromArgb(60, 60, 65);
-            nudQuentity.BorderStyle = BorderStyle.FixedSingle;
-            nudQuentity.ForeColor = Color.White;
-            nudQuentity.Location = new Point(209, 142);
-            nudQuentity.Name = "nudQuentity";
-            nudQuentity.Size = new Size(250, 32);
-            nudQuentity.TabIndex = 22;
-            // 
-            // cbCategory
-            // 
-            cbCategory.BackColor = Color.FromArgb(60, 60, 65);
-            cbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbCategory.FlatStyle = FlatStyle.Flat;
-            cbCategory.ForeColor = Color.White;
-            cbCategory.FormattingEnabled = true;
-            cbCategory.Location = new Point(209, 228);
-            cbCategory.Name = "cbCategory";
-            cbCategory.Size = new Size(250, 33);
-            cbCategory.TabIndex = 24;
-            cbCategory.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            label6.Text = "رقم الهاتف";
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.ForeColor = Color.LightGray;
-            label7.Location = new Point(386, 201);
+            label7.Location = new Point(381, 233);
             label7.Name = "label7";
-            label7.Size = new Size(69, 25);
+            label7.Size = new Size(79, 25);
             label7.TabIndex = 25;
-            label7.Text = "المجموعة ";
+            label7.Text = "تاريخ الميلاد";
+            label7.Click += label7_Click;
             // 
-            // FrmProduct
+            // txtphonenumber
+            // 
+            txtphonenumber.BackColor = Color.FromArgb(60, 60, 65);
+            txtphonenumber.BorderStyle = BorderStyle.FixedSingle;
+            txtphonenumber.ForeColor = Color.White;
+            txtphonenumber.Location = new Point(209, 142);
+            txtphonenumber.Name = "txtphonenumber";
+            txtphonenumber.Size = new Size(250, 32);
+            txtphonenumber.TabIndex = 27;
+            txtphonenumber.TextChanged += textBox2_TextChanged;
+            // 
+            // textBox2
+            // 
+            textBox2.BackColor = Color.FromArgb(60, 60, 65);
+            textBox2.BorderStyle = BorderStyle.FixedSingle;
+            textBox2.ForeColor = Color.White;
+            textBox2.Location = new Point(532, 261);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(573, 32);
+            textBox2.TabIndex = 29;
+            // 
+            // txtdateofbirth
+            // 
+            txtdateofbirth.CalendarMonthBackground = SystemColors.ControlLightLight;
+            txtdateofbirth.Format = DateTimePickerFormat.Short;
+            txtdateofbirth.Location = new Point(210, 261);
+            txtdateofbirth.Name = "txtdateofbirth";
+            txtdateofbirth.Size = new Size(250, 32);
+            txtdateofbirth.TabIndex = 30;
+            txtdateofbirth.ValueChanged += dateTimePicker1_ValueChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.ForeColor = Color.LightGray;
+            label4.Location = new Point(1016, 233);
+            label4.Name = "label4";
+            label4.Size = new Size(89, 25);
+            label4.TabIndex = 31;
+            label4.Text = "عنوان العميل ";
+            // 
+            // FrmCustomer
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
-            ClientSize = new Size(1372, 877);
-            Controls.Add(label7);
-            Controls.Add(cbCategory);
-            Controls.Add(label6);
-            Controls.Add(nudQuentity);
-            Controls.Add(label5);
-            Controls.Add(nudBuyPrice);
+            ClientSize = new Size(1375, 877);
             Controls.Add(label4);
-            Controls.Add(nudSalePrice);
-            Controls.Add(dgvProduct);
+            Controls.Add(txtdateofbirth);
+            Controls.Add(textBox2);
+            Controls.Add(txtphonenumber);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(dgvCustomer);
             Controls.Add(txtSearch);
             Controls.Add(btnNew);
             Controls.Add(btnUpdate);
@@ -457,17 +421,14 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
             Margin = new Padding(4, 3, 4, 3);
-            Name = "FrmProduct";
+            Name = "FrmCustomer";
             RightToLeft = RightToLeft.Yes;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "شاشة الأصناف";
-            Load += FrmProduct_Load;
+            Load += FrmCustomer_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvProduct).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudSalePrice).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudBuyPrice).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudQuentity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCustomer).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -488,20 +449,17 @@
         private Button btnUpdate;
         private Button btnNew;
         private TextBox txtSearch;
-        private DataGridView dgvProduct;
-        private NumericUpDown nudSalePrice;
-        private Label label4;
-        private Label label5;
-        private NumericUpDown nudBuyPrice;
+        private DataGridView dgvCustomer;
         private Label label6;
-        private NumericUpDown nudQuentity;
-        private ComboBox cbCategory;
         private Label label7;
         private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column6;
-        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn DateOfBirth;
+        private TextBox txtphonenumber;
+        private TextBox textBox2;
+        private DateTimePicker txtdateofbirth;
+        private Label label4;
     }
 }
