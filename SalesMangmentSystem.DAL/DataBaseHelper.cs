@@ -50,30 +50,25 @@ namespace SalesMangmentSystem.DAL
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
-                using (SqlTransaction transaction = connection.BeginTransaction())
+                SqlTransaction transaction = connection.BeginTransaction();
+                try
                 {
-                    try
+                    // اجمع كل الأوامر في batch واحد بدل تنفيذ كل أمر لوحده
+                    string batch = string.Join(Environment.NewLine, commands);
+
+                    using (SqlCommand cmd = new SqlCommand(batch, connection, transaction))
                     {
-                        foreach (var command in commands)
-                        {
-                            using (SqlCommand sqlCommand = new SqlCommand(command, connection, transaction))
-                            {
-                                sqlCommand.ExecuteNonQuery();
-                            }
-                        }
-                        transaction.Commit();
-                        return true;
+                        cmd.ExecuteNonQuery();
                     }
-                    catch
-                    {
-                        transaction.Rollback();
-                       
-                        return false;
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
+
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    System.Diagnostics.Debug.WriteLine(ex.Message); 
+                    return false;
                 }
             }
         }

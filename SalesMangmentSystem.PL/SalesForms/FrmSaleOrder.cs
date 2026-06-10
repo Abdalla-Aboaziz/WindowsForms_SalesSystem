@@ -17,7 +17,7 @@ namespace SalesMangmentSystem.PL.SalesForms
             Product product = ProductService.GetProductById(Convert.ToInt32(cbCategory.SelectedValue));
             if (product != null)
             {
-                decimal quantity = Convert.ToDecimal(nudCategoryCount.Value);
+                decimal quantity = Convert.ToDecimal(nudQuntity.Value);
                 if (quantity > (decimal)product.Quantity)
                 {
                     MessageBox.Show("الكمية المطلوبة غير متوفرة في المخزون", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -29,8 +29,8 @@ namespace SalesMangmentSystem.PL.SalesForms
 
                    product.ID,
                      product.Name,
+                       product.SalePrice,
                      quantity,
-                     product.SalePrice,
                      lineTotal
                     );
 
@@ -59,21 +59,21 @@ namespace SalesMangmentSystem.PL.SalesForms
 
             txtID.Text = (SaleOrderService.GetLastInsertedID() + 1).ToString();
 
-           
+
         }
 
         private void dgvProduct_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
+
             if (e.RowIndex < 0 || e.RowIndex == dgvSaleOrder.NewRowIndex) return;
 
             DataGridViewRow row = dgvSaleOrder.Rows[e.RowIndex];
 
-           
+
             if (row.Cells[0].Value != null)
             {
-               
-                nudCategoryCount.Value = Convert.ToDecimal(row.Cells[2].Value);
+
+                nudQuntity.Value = Convert.ToDecimal(row.Cells[2].Value);
 
             }
         }
@@ -92,7 +92,7 @@ namespace SalesMangmentSystem.PL.SalesForms
                 MessageBox.Show("من فضلك اختر فاتورة من القائمة", "تأكيد", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (MessageBox.Show("هل أنت متأكد من حذف هذه الفاتورة؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            if (MessageBox.Show("هل أنت متأكد من حذف هذه الفاتورة؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 if (dgvSaleOrder.CurrentRow.Cells[0].Value != null)
                 {
@@ -114,14 +114,14 @@ namespace SalesMangmentSystem.PL.SalesForms
 
 
 
-          
+
         }
 
 
 
 
 
-      
+
 
         //
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -161,28 +161,31 @@ namespace SalesMangmentSystem.PL.SalesForms
                 // Insert Sales Order Products
                 List<SaleOrderProduct> saleOrderproducts = new List<SaleOrderProduct>();
 
-                for (int i = 0; i < dgvSaleOrder.Rows.Count - 1; i++)
+                for (int i = 0; i < dgvSaleOrder.Rows.Count; i++)
                 {
+                    if (dgvSaleOrder.Rows[i].IsNewRow) continue;
                     saleOrderproducts.Add(new SaleOrderProduct
                     {
                         SaleOrderID = Convert.ToInt32(txtID.Text),
                         ProductID = Convert.ToInt32(dgvSaleOrder.Rows[i].Cells[0].Value),
-                        ProductQuantity = Convert.ToDouble(dgvSaleOrder.Rows[i].Cells[2].Value),
-                        ProductPrice = Convert.ToDouble(dgvSaleOrder.Rows[i].Cells[3].Value),
+                        ProductPrice = Convert.ToDouble(dgvSaleOrder.Rows[i].Cells[2].Value), 
+                        ProductQuantity = Convert.ToDouble(dgvSaleOrder.Rows[i].Cells[3].Value), 
                         ProductTotalPrice = Convert.ToDouble(dgvSaleOrder.Rows[i].Cells[4].Value)
                     });
 
                 }
-                // Update Product (for quantity in stock)
+                // Update Product (for quantity in stock)-
                 List<Product> products = new List<Product>();
-                for (int i = 0; i < dgvSaleOrder.Rows.Count - 1; i++)
+                for (int i = 0; i < dgvSaleOrder.Rows.Count ; i++)
                 {
+                    if (dgvSaleOrder.Rows[i].IsNewRow) continue;
                     products.Add(new Product
                     {
                         ID = Convert.ToInt32(dgvSaleOrder.Rows[i].Cells[0].Value),
-                        Quantity = Convert.ToDouble(dgvSaleOrder.Rows[i].Cells[2].Value)
+                        Quantity = Convert.ToDouble(dgvSaleOrder.Rows[i].Cells[3].Value) 
                     });
                 }
+                // Update Stock Total Money +
                 Stock stock = new Stock
                 {
                     ID = 1, // Assuming you have only one stock
@@ -214,15 +217,23 @@ namespace SalesMangmentSystem.PL.SalesForms
                 }
                 // Clear Form
                 dgvSaleOrder.Rows.Clear();
-                txtID.Text= string.Empty;
+               
                 nudTotalInvoice.Value = 0;
-                nudCategoryCount.Value = 1;
-                txtID.Text = (SaleOrderService.GetLastInsertedID() + 1).ToString(); 
+                nudQuntity.Value = 1;
+                txtID.Text = (SaleOrderService.GetLastInsertedID() + 1).ToString();
 
 
             }
         }
 
+        private void nudCategoryCount_ValueChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void nudTotalInvoice_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

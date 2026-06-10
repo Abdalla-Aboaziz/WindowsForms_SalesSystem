@@ -90,21 +90,15 @@ namespace SalesMangmentSystem.BLL.Services
             return result;
         }
 
-        public static string AddSaleOrderProductsGetCommand(List<SaleOrderProduct> saleOrderproducts)
+        public static string AddSaleOrderProductsGetCommand(List<SaleOrderProduct> products)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (var product in saleOrderproducts)
-            {
-                stringBuilder.Append($"({product.SaleOrderID}, {product.ProductID}, {product.ProductPrice}, " +
-                    $"{product.ProductQuantity}, {product.ProductTotalPrice}),");
-            }
-            string command = stringBuilder.ToString().TrimEnd(',');
-            string cmd = $"INSERT INTO SALEORDERPRODUCTS (ORDERID, PRODUCTID, PRODUCTPRICE, PRODUCTQUANTITY, PRODUCTTOTALPRICE) VALUES {command}";
-            return cmd;
+            var values = products.Select(p =>
+                $"(@NewOrderID, {p.ProductID}, {p.ProductPrice}, {p.ProductQuantity}, {p.ProductTotalPrice})");
 
+            return "INSERT INTO SALEORDERPRODUCTS (ORDERID, PRODUCTID, PRODUCTPRICE, PRODUCTQUANTITY, PRODUCTTOTALPRICE) VALUES "
+                   + string.Join(",", values) + ";";
         }
 
-        
 
     }
      

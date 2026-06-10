@@ -41,5 +41,12 @@ namespace SalesMangmentSystem.PL
             FrmCustomer frmCustomer = new FrmCustomer();
             frmCustomer.ShowDialog();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FrmSaleOrderReport frmSaleOrderReport = new FrmSaleOrderReport();
+            frmSaleOrderReport.ShowDialog();
+
+        }
     }
 }

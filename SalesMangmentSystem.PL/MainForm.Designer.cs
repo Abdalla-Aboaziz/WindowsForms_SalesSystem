@@ -32,6 +32,7 @@
             button3 = new Button();
             SaleOrder = new Button();
             button2 = new Button();
+            button4 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -74,11 +75,22 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // button4
+            // 
+            button4.Location = new Point(259, 504);
+            button4.Name = "button4";
+            button4.Size = new Size(186, 70);
+            button4.TabIndex = 5;
+            button4.Text = "تقارير المبيعات ";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(15F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(871, 720);
+            Controls.Add(button4);
             Controls.Add(button2);
             Controls.Add(SaleOrder);
             Controls.Add(button3);
@@ -96,5 +108,6 @@
         private Button button3;
         private Button SaleOrder;
         private Button button2;
+        private Button button4;
     }
 }

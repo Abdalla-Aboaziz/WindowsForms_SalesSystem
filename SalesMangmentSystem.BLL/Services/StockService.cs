@@ -34,9 +34,9 @@ namespace SalesMangmentSystem.BLL.Services
             return Result;
         }
 
-        public static string UpdateStockMoneyPlusGetCommand(Stock Stock)
+        public static string UpdateStockMoneyPlusGetCommand(Stock stock)
         {
-            string command = $"UPDATE Stocks SET TotalMoney = TotalMoney + {Stock.TotalMoney} WHERE ID = {Stock.ID}";
+            string command = $"UPDATE Stock SET TotalMoney = TotalMoney + {stock.TotalMoney} WHERE ID = {stock.ID}";
             return command;
         }
 

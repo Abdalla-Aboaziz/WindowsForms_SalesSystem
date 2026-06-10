@@ -1,10 +1,6 @@
-﻿using SalesMangmentSystem.DAL;
+﻿using SalesMangmentSystem.BLL.Dtos;
+using SalesMangmentSystem.DAL;
 using SalesMangmentSystem.DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SalesMangmentSystem.BLL.Services
 {
@@ -27,7 +23,7 @@ namespace SalesMangmentSystem.BLL.Services
         {
             bool result = DataBaseHelper.ExcuteDML($"DELETE FROM SaleOrders WHERE Id = {id}");
             return result;
-         }
+        }
 
         public static List<SaleOrder> GetAllSaleOrders()
         {
@@ -55,22 +51,22 @@ namespace SalesMangmentSystem.BLL.Services
         public static int GetLastInsertedID()
         {
             var dt = DataBaseHelper.ExcuteSelect("SELECT ISNULL(MAX(ID),0) AS LASTORDERID FROM SALEORDERS");
-      
-            return Convert.ToInt32(dt.Rows[0]["LASTORDERID"]);
+
+            return (int)(dt.Rows[0]["LASTORDERID"]);
         }
 
         public static bool InsertSaleOrderTransaction(SaleOrder saleOrder, List<SaleOrderProduct> saleOrderproducts, List<Product> products, Stock stock, StockDetails stockDetails)
         {
             List<string> commands = new List<string>();
             // Insert Sale Order
-            string addSaleOrderCommand= SaleOrderService.AddSaleOrderGetCommand(saleOrder);
+            string addSaleOrderCommand = SaleOrderService.AddSaleOrderGetCommand(saleOrder);
             commands.Add(addSaleOrderCommand);
             // Insert Sale Order Products
             string addSaleOrderProductsCommand = SaleOrderProductService.AddSaleOrderProductsGetCommand(saleOrderproducts);
             commands.Add(addSaleOrderProductsCommand);
             // Update Products Quantity Minus
-            string updateProductMinusQuantityCommand = ProductService.UpdateProductMinusQuantityGetCommand(products);
-            commands.Add(updateProductMinusQuantityCommand);
+            List<string> updateCommands = ProductService.UpdateProductMinusQuantityGetCommands(products);
+            commands.AddRange(updateCommands);
             // Update Stock Plus Money
             string updateStockPlusMoneyCommand = StockService.UpdateStockMoneyPlusGetCommand(stock);
             commands.Add(updateStockPlusMoneyCommand);
@@ -84,8 +80,90 @@ namespace SalesMangmentSystem.BLL.Services
 
         private static string AddSaleOrderGetCommand(SaleOrder saleOrder)
         {
-            string command = $"INSERT INTO SaleOrders (CustomerID, DateOrder, TotalOrder) VALUES ({saleOrder.CustomerID}, '{saleOrder.DateOrder:yyyy-MM-dd HH:mm:ss}', {saleOrder.TotalOrder})";
-            return command;
+            return $@"
+            DECLARE @NewOrderID INT;
+            INSERT INTO SaleOrders (CustomerID, DateOrder, TotalOrder)
+            VALUES ({saleOrder.CustomerID}, '{saleOrder.DateOrder:yyyy-MM-dd HH:mm:ss}', {saleOrder.TotalOrder});
+            SET @NewOrderID = SCOPE_IDENTITY();";
+        }
+
+        public static List<SaleOrderReadProductDto> GetAllSaleOrderDateRange(DateTime dateTime1, DateTime dateTime2)
+        {
+            var dataTable = DataBaseHelper.ExcuteSelect($@"
+                SELECT
+                SO.ID,
+                C.Name AS CUSTOMERNAME,
+                P.Name AS PRODUCTNAME,
+                SOP.PRODUCTPRICE,
+                SO.DATEORDER,
+                SOP.PRODUCTQUANTITY,
+                SOP.PRODUCTTOTALPRICE
+                FROM
+                SALEORDERS AS SO,
+                CUSTOMERS AS C,
+                PRODUCTS AS P,
+                SALEORDERPRODUCTS AS SOP
+                WHERE
+                SO.CustomerID = C.ID AND
+                P.ID = SOP.ProductID AND
+                SOP.ORDERID = SO.ID AND
+                SO.DATEORDER BETWEEN '{dateTime1:yyyy-MM-dd HH:mm:ss}' AND '{dateTime2:yyyy-MM-dd HH:mm:ss}'
+
+            ");
+            List<SaleOrderReadProductDto> saleOrders = new List<SaleOrderReadProductDto>();
+            foreach (System.Data.DataRow row in dataTable.Rows)
+            {
+                saleOrders.Add(new SaleOrderReadProductDto
+                {
+                    SaleOrderID = Convert.ToInt32(row["ID"]),
+                    CustomerName = row["CUSTOMERNAME"].ToString(),
+                    ProductName = row["PRODUCTNAME"].ToString(),
+                    ProductPrice = Convert.ToDouble(row["PRODUCTPRICE"]),
+                    ProductQuantity = Convert.ToDouble(row["PRODUCTQUANTITY"]),
+                    ProductTotalPrice = Convert.ToDouble(row["PRODUCTTOTALPRICE"])
+                });
+            }
+            return saleOrders;
+        }
+
+        public static List<SaleOrderReadProductDto> GetAllSaleOrderWithProducts(string customerName, int orderID)
+        {
+            string whereClause = "";
+
+            if (orderID > 0)
+                whereClause = $"WHERE SO.ID = {orderID}";
+            else if (!string.IsNullOrEmpty(customerName))
+                whereClause = $"WHERE C.NAME LIKE '%{customerName}%'";
+
+            var dataTable = DataBaseHelper.ExcuteSelect($@"
+        SELECT 
+            SO.ID,
+            C.NAME AS CUSTOMERNAME,
+            P.NAME AS PRODUCTNAME,
+            SOP.PRODUCTPRICE,
+            SOP.PRODUCTQUANTITY,
+            SOP.PRODUCTTOTALPRICE
+        FROM SALEORDERS SO
+        JOIN CUSTOMERS C ON SO.CUSTOMERID = C.ID
+        JOIN SALEORDERPRODUCTS SOP ON SOP.ORDERID = SO.ID
+        JOIN PRODUCTS P ON P.ID = SOP.PRODUCTID
+        {whereClause}
+    ");
+
+            List<SaleOrderReadProductDto> SaleOrders = new List<SaleOrderReadProductDto>();
+            foreach (System.Data.DataRow row in dataTable.Rows)
+            {
+                SaleOrders.Add(new SaleOrderReadProductDto
+                {
+                    SaleOrderID = Convert.ToInt32(row["ID"]),
+                    CustomerName = row["CUSTOMERNAME"].ToString(),
+                    ProductName = row["PRODUCTNAME"].ToString(),
+                    ProductPrice = Convert.ToDouble(row["PRODUCTPRICE"]),
+                    ProductQuantity = Convert.ToDouble(row["PRODUCTQUANTITY"]),
+                    ProductTotalPrice = Convert.ToDouble(row["PRODUCTTOTALPRICE"])
+                });
+            }
+            return SaleOrders;
         }
     }
 }

@@ -17,10 +17,10 @@ namespace SalesMangmentSystem.BLL.Services
             return Result;
         }
 
-        public static string AddStockDetailsGetCommand(StockDetails StockDetails)
+        public static string AddStockDetailsGetCommand(StockDetails sd)
         {
-            string command = $"INSERT INTO StockDetails (STOCKID, TYPE, TOTAL, DATE, ORDERID) VALUES ({StockDetails.StockID}, {(int)StockDetails.Type}, {StockDetails.Total}, '{StockDetails.Date:yyyy-MM-dd HH:mm:ss}', {StockDetails.SaleOrderID})";
-            return command;
+            return $@"INSERT INTO StockDetails (STOCKID, TYPE, TOTAL, DATE, ORDERID)
+            VALUES ({sd.StockID}, {(int)sd.Type}, {sd.Total}, '{sd.Date:yyyy-MM-dd HH:mm:ss}', @NewOrderID);";
         }
 
         // DeleteStockDetails

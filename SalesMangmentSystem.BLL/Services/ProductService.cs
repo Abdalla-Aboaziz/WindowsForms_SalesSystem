@@ -113,17 +113,14 @@ namespace SalesMangmentSystem.BLL.Services
 
         }
 
-        public static string UpdateProductMinusQuantityGetCommand(List<Product> products)
+        public static List<string> UpdateProductMinusQuantityGetCommands(List<Product> products)
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            List<string> commands = new List<string>();
             foreach (var product in products)
             {
-                stringBuilder.Append($"UPDATE Products SET Quantity = Quantity - {product.Quantity} WHERE Id = {product.ID}; ");
-                stringBuilder.Append("\n");
+                commands.Add($"UPDATE Products SET Quantity = Quantity - {product.Quantity} WHERE Id = {product.ID}");
             }
-            string command = stringBuilder.ToString();
-            return command;
-
+            return commands;
         }
 
         public static bool updateProductPlus(int id, double quantity)
