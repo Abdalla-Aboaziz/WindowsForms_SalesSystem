@@ -1,6 +1,6 @@
-﻿using SalesMangmentSystem.BLL.Services; // استدعاء طبقة الـ BLL
+﻿using SalesMangmentSystem.BLL.Services; 
 using SalesMangmentSystem.DAL.Identity;
-using SalesMangmentSystem.DAL.Models; // استدعاء الموديلز لمعرفة المستخدم
+using SalesMangmentSystem.DAL.Models; 
 using System;
 using System.Windows.Forms;
 
@@ -11,6 +11,7 @@ namespace SalesMangmentSystem.PL.SalesForms
         public FrmAuthentication()
         {
             InitializeComponent();
+            ApplyHoverEffects();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -48,6 +49,17 @@ namespace SalesMangmentSystem.PL.SalesForms
         {
             
             Application.Exit();
+        }
+       
+        private void ApplyHoverEffects()
+        {
+          
+            btnLogin.MouseEnter += (s, e) => btnLogin.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
+            btnLogin.MouseLeave += (s, e) => btnLogin.BackColor = System.Drawing.Color.FromArgb(4, 150, 255);
+
+           
+            btnExit.MouseEnter += (s, e) => btnExit.BackColor = System.Drawing.Color.FromArgb(200, 35, 51);
+            btnExit.MouseLeave += (s, e) => btnExit.BackColor = System.Drawing.Color.FromArgb(220, 53, 69);
         }
     }
 }

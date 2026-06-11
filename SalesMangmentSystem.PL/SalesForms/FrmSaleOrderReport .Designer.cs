@@ -55,6 +55,7 @@
             txtSearchCustomer = new TextBox();
             label4 = new Label();
             cbByOrderID = new CheckBox();
+            label8 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudTotalInvoice).BeginInit();
@@ -78,7 +79,7 @@
             label1.ForeColor = Color.FromArgb(4, 150, 255);
             label1.Location = new Point(588, 18);
             label1.Name = "label1";
-            label1.Size = new Size(316, 52);
+            label1.Size = new Size(256, 42);
             label1.TabIndex = 0;
             label1.Text = "شاشة  تقارير المبيعات ";
             label1.Click += label1_Click;
@@ -86,6 +87,7 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(45, 45, 48);
+            panel2.Controls.Add(label8);
             panel2.Controls.Add(nudTotalInvoice);
             panel2.Controls.Add(label5);
             panel2.Dock = DockStyle.Bottom;
@@ -104,7 +106,7 @@
             nudTotalInvoice.Location = new Point(32, 11);
             nudTotalInvoice.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudTotalInvoice.Name = "nudTotalInvoice";
-            nudTotalInvoice.Size = new Size(250, 42);
+            nudTotalInvoice.Size = new Size(250, 35);
             nudTotalInvoice.TabIndex = 20;
             nudTotalInvoice.TextAlign = HorizontalAlignment.Center;
             nudTotalInvoice.ValueChanged += nudTotalInvoice_ValueChanged;
@@ -116,7 +118,7 @@
             label5.ForeColor = Color.White;
             label5.Location = new Point(302, 16);
             label5.Name = "label5";
-            label5.Size = new Size(171, 36);
+            label5.Size = new Size(141, 28);
             label5.TabIndex = 21;
             label5.Text = "إجمالي الفاتورة :";
             // 
@@ -126,7 +128,7 @@
             label2.ForeColor = Color.LightGray;
             label2.Location = new Point(1191, 102);
             label2.Name = "label2";
-            label2.Size = new Size(0, 25);
+            label2.Size = new Size(0, 21);
             label2.TabIndex = 4;
             // 
             // dgvSaleOrder
@@ -233,7 +235,7 @@
             label6.ForeColor = Color.LightGray;
             label6.Location = new Point(1034, 102);
             label6.Name = "label6";
-            label6.Size = new Size(75, 25);
+            label6.Size = new Size(66, 21);
             label6.TabIndex = 23;
             label6.Text = "من تاريخ  : ";
             // 
@@ -243,7 +245,7 @@
             label7.ForeColor = Color.LightGray;
             label7.Location = new Point(664, 102);
             label7.Name = "label7";
-            label7.Size = new Size(76, 25);
+            label7.Size = new Size(65, 21);
             label7.TabIndex = 25;
             label7.Text = "الي تاريخ  :";
             // 
@@ -254,7 +256,7 @@
             DtpFromDate.Format = DateTimePickerFormat.Short;
             DtpFromDate.Location = new Point(872, 130);
             DtpFromDate.Name = "DtpFromDate";
-            DtpFromDate.Size = new Size(237, 32);
+            DtpFromDate.Size = new Size(237, 27);
             DtpFromDate.TabIndex = 26;
             // 
             // txtOrderID
@@ -265,7 +267,7 @@
             txtOrderID.ForeColor = Color.White;
             txtOrderID.Location = new Point(872, 230);
             txtOrderID.Name = "txtOrderID";
-            txtOrderID.Size = new Size(237, 32);
+            txtOrderID.Size = new Size(237, 27);
             txtOrderID.TabIndex = 2;
             txtOrderID.TextChanged += txtOrderID_TextChanged;
             // 
@@ -276,7 +278,7 @@
             DtpToDate.Format = DateTimePickerFormat.Short;
             DtpToDate.Location = new Point(390, 130);
             DtpToDate.Name = "DtpToDate";
-            DtpToDate.Size = new Size(350, 32);
+            DtpToDate.Size = new Size(350, 27);
             DtpToDate.TabIndex = 29;
             // 
             // btnsearch1
@@ -317,7 +319,7 @@
             label3.ForeColor = Color.LightGray;
             label3.Location = new Point(1024, 202);
             label3.Name = "label3";
-            label3.Size = new Size(85, 25);
+            label3.Size = new Size(72, 21);
             label3.TabIndex = 32;
             label3.Text = "رقم الفاتورة ";
             label3.Click += label3_Click;
@@ -330,7 +332,7 @@
             txtSearchCustomer.ForeColor = Color.White;
             txtSearchCustomer.Location = new Point(390, 230);
             txtSearchCustomer.Name = "txtSearchCustomer";
-            txtSearchCustomer.Size = new Size(350, 32);
+            txtSearchCustomer.Size = new Size(350, 27);
             txtSearchCustomer.TabIndex = 33;
             // 
             // label4
@@ -339,7 +341,7 @@
             label4.ForeColor = Color.LightGray;
             label4.Location = new Point(662, 202);
             label4.Name = "label4";
-            label4.Size = new Size(78, 25);
+            label4.Size = new Size(66, 21);
             label4.TabIndex = 34;
             label4.Text = "اسم العميل";
             label4.Click += label4_Click;
@@ -351,16 +353,26 @@
             cbByOrderID.ForeColor = SystemColors.ButtonHighlight;
             cbByOrderID.Location = new Point(256, 230);
             cbByOrderID.Name = "cbByOrderID";
-            cbByOrderID.Size = new Size(112, 29);
+            cbByOrderID.Size = new Size(94, 25);
             cbByOrderID.TabIndex = 35;
             cbByOrderID.Text = "برقم الفاتورة ";
             cbByOrderID.UseVisualStyleBackColor = false;
-
             cbByOrderID.CheckedChanged += cbByOrderID_CheckedChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Droid Arabic Kufi", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.White;
+            label8.Location = new Point(508, 18);
+            label8.Name = "label8";
+            label8.Size = new Size(457, 21);
+            label8.TabIndex = 23;
+            label8.Text = "نظام ادارة المبيعات  |Abdalla Aboaziz |abdallaaboaziz@gmail.com";
             // 
             // FrmSaleOrderReport
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(1372, 877);
@@ -424,5 +436,6 @@
         private TextBox txtSearchCustomer;
         private Label label4;
         private CheckBox cbByOrderID;
+        private Label label8;
     }
 }

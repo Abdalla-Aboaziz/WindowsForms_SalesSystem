@@ -15,7 +15,7 @@ namespace SalesMangmentSystem.PL
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             AuthenticationService.SeedData();
-            Application.Run(new FrmAuthentication());
+            Application.Run(new MainForm());
         }
     }
 }

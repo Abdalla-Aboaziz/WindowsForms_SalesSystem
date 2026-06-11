@@ -57,7 +57,9 @@
             textBox2 = new TextBox();
             txtdateofbirth = new DateTimePicker();
             label4 = new Label();
+            label5 = new Label();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomer).BeginInit();
             SuspendLayout();
             // 
@@ -78,17 +80,18 @@
             label1.ForeColor = Color.FromArgb(4, 150, 255);
             label1.Location = new Point(588, 18);
             label1.Name = "label1";
-            label1.Size = new Size(179, 52);
+            label1.Size = new Size(146, 42);
             label1.TabIndex = 0;
             label1.Text = "ادارة العملاء";
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(45, 45, 48);
+            panel2.Controls.Add(label5);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 827);
+            panel2.Location = new Point(0, 819);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1375, 50);
+            panel2.Size = new Size(1375, 58);
             panel2.TabIndex = 1;
             // 
             // txtID
@@ -99,7 +102,7 @@
             txtID.ForeColor = Color.White;
             txtID.Location = new Point(855, 142);
             txtID.Name = "txtID";
-            txtID.Size = new Size(250, 32);
+            txtID.Size = new Size(250, 27);
             txtID.TabIndex = 2;
             // 
             // txtName
@@ -109,7 +112,7 @@
             txtName.ForeColor = Color.White;
             txtName.Location = new Point(532, 142);
             txtName.Name = "txtName";
-            txtName.Size = new Size(250, 32);
+            txtName.Size = new Size(250, 27);
             txtName.TabIndex = 3;
             txtName.TextChanged += txtName_TextChanged;
             // 
@@ -119,7 +122,7 @@
             label2.ForeColor = Color.LightGray;
             label2.Location = new Point(1029, 114);
             label2.Name = "label2";
-            label2.Size = new Size(79, 25);
+            label2.Size = new Size(67, 21);
             label2.TabIndex = 4;
             label2.Text = "رقم العميل ";
             // 
@@ -129,7 +132,7 @@
             label3.ForeColor = Color.LightGray;
             label3.Location = new Point(700, 114);
             label3.Name = "label3";
-            label3.Size = new Size(82, 25);
+            label3.Size = new Size(70, 21);
             label3.TabIndex = 5;
             label3.Text = "اسم العميل ";
             // 
@@ -236,7 +239,7 @@
             txtSearch.ForeColor = Color.White;
             txtSearch.Location = new Point(532, 534);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(365, 32);
+            txtSearch.Size = new Size(365, 27);
             txtSearch.TabIndex = 12;
             // 
             // dgvCustomer
@@ -335,7 +338,7 @@
             label6.ForeColor = Color.LightGray;
             label6.Location = new Point(381, 114);
             label6.Name = "label6";
-            label6.Size = new Size(78, 25);
+            label6.Size = new Size(64, 21);
             label6.TabIndex = 23;
             label6.Text = "رقم الهاتف";
             // 
@@ -345,7 +348,7 @@
             label7.ForeColor = Color.LightGray;
             label7.Location = new Point(381, 233);
             label7.Name = "label7";
-            label7.Size = new Size(79, 25);
+            label7.Size = new Size(67, 21);
             label7.TabIndex = 25;
             label7.Text = "تاريخ الميلاد";
             label7.Click += label7_Click;
@@ -357,7 +360,7 @@
             txtphonenumber.ForeColor = Color.White;
             txtphonenumber.Location = new Point(209, 142);
             txtphonenumber.Name = "txtphonenumber";
-            txtphonenumber.Size = new Size(250, 32);
+            txtphonenumber.Size = new Size(250, 27);
             txtphonenumber.TabIndex = 27;
             txtphonenumber.TextChanged += textBox2_TextChanged;
             // 
@@ -368,7 +371,7 @@
             textBox2.ForeColor = Color.White;
             textBox2.Location = new Point(532, 261);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(573, 32);
+            textBox2.Size = new Size(573, 27);
             textBox2.TabIndex = 29;
             // 
             // txtdateofbirth
@@ -377,7 +380,7 @@
             txtdateofbirth.Format = DateTimePickerFormat.Short;
             txtdateofbirth.Location = new Point(210, 261);
             txtdateofbirth.Name = "txtdateofbirth";
-            txtdateofbirth.Size = new Size(250, 32);
+            txtdateofbirth.Size = new Size(250, 27);
             txtdateofbirth.TabIndex = 30;
             txtdateofbirth.ValueChanged += dateTimePicker1_ValueChanged;
             // 
@@ -387,13 +390,24 @@
             label4.ForeColor = Color.LightGray;
             label4.Location = new Point(1016, 233);
             label4.Name = "label4";
-            label4.Size = new Size(89, 25);
+            label4.Size = new Size(76, 21);
             label4.TabIndex = 31;
             label4.Text = "عنوان العميل ";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Droid Arabic Kufi", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(459, 19);
+            label5.Name = "label5";
+            label5.Size = new Size(457, 21);
+            label5.TabIndex = 23;
+            label5.Text = "نظام ادارة المبيعات  |Abdalla Aboaziz |abdallaaboaziz@gmail.com";
+            // 
             // FrmCustomer
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(1375, 877);
@@ -428,6 +442,8 @@
             Load += FrmCustomer_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomer).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -461,5 +477,6 @@
         private TextBox textBox2;
         private DateTimePicker txtdateofbirth;
         private Label label4;
+        private Label label5;
     }
 }

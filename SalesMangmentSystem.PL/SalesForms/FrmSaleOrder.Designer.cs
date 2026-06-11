@@ -59,6 +59,7 @@
             cbStockType = new ComboBox();
             label9 = new Label();
             cbStockName = new ComboBox();
+            label10 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudTotalInvoice).BeginInit();
@@ -100,7 +101,7 @@
             label1.ForeColor = Color.FromArgb(4, 150, 255);
             label1.Location = new Point(588, 18);
             label1.Name = "label1";
-            label1.Size = new Size(226, 52);
+            label1.Size = new Size(183, 42);
             label1.TabIndex = 0;
             label1.Text = "شاشة المبيعات ";
             label1.Click += label1_Click;
@@ -108,6 +109,7 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(45, 45, 48);
+            panel2.Controls.Add(label10);
             panel2.Controls.Add(nudTotalInvoice);
             panel2.Controls.Add(label5);
             panel2.Dock = DockStyle.Bottom;
@@ -126,7 +128,7 @@
             nudTotalInvoice.Location = new Point(32, 11);
             nudTotalInvoice.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudTotalInvoice.Name = "nudTotalInvoice";
-            nudTotalInvoice.Size = new Size(250, 42);
+            nudTotalInvoice.Size = new Size(250, 35);
             nudTotalInvoice.TabIndex = 20;
             nudTotalInvoice.TextAlign = HorizontalAlignment.Center;
             nudTotalInvoice.ValueChanged += nudTotalInvoice_ValueChanged;
@@ -138,7 +140,7 @@
             label5.ForeColor = Color.White;
             label5.Location = new Point(302, 16);
             label5.Name = "label5";
-            label5.Size = new Size(171, 36);
+            label5.Size = new Size(141, 28);
             label5.TabIndex = 21;
             label5.Text = "إجمالي الفاتورة :";
             // 
@@ -150,7 +152,7 @@
             txtID.ForeColor = Color.White;
             txtID.Location = new Point(1050, 130);
             txtID.Name = "txtID";
-            txtID.Size = new Size(220, 32);
+            txtID.Size = new Size(220, 27);
             txtID.TabIndex = 2;
             // 
             // label2
@@ -159,7 +161,7 @@
             label2.ForeColor = Color.LightGray;
             label2.Location = new Point(1191, 102);
             label2.Name = "label2";
-            label2.Size = new Size(85, 25);
+            label2.Size = new Size(72, 21);
             label2.TabIndex = 4;
             label2.Text = "رقم الفاتورة ";
             // 
@@ -291,7 +293,7 @@
             label6.ForeColor = Color.LightGray;
             label6.Location = new Point(276, 98);
             label6.Name = "label6";
-            label6.Size = new Size(46, 25);
+            label6.Size = new Size(38, 21);
             label6.TabIndex = 23;
             label6.Text = "التاريخ";
             // 
@@ -304,7 +306,7 @@
             cbCustomer.FormattingEnabled = true;
             cbCustomer.Location = new Point(398, 129);
             cbCustomer.Name = "cbCustomer";
-            cbCustomer.Size = new Size(280, 33);
+            cbCustomer.Size = new Size(280, 27);
             cbCustomer.TabIndex = 24;
             cbCustomer.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
@@ -314,7 +316,7 @@
             label7.ForeColor = Color.LightGray;
             label7.Location = new Point(628, 101);
             label7.Name = "label7";
-            label7.Size = new Size(50, 25);
+            label7.Size = new Size(42, 21);
             label7.TabIndex = 25;
             label7.Text = "العميل";
             // 
@@ -325,7 +327,7 @@
             dateTimePicker1.Format = DateTimePickerFormat.Short;
             dateTimePicker1.Location = new Point(43, 126);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(280, 32);
+            dateTimePicker1.Size = new Size(280, 27);
             dateTimePicker1.TabIndex = 26;
             // 
             // cbCategory
@@ -337,7 +339,7 @@
             cbCategory.FormattingEnabled = true;
             cbCategory.Location = new Point(850, 222);
             cbCategory.Name = "cbCategory";
-            cbCategory.Size = new Size(420, 33);
+            cbCategory.Size = new Size(420, 27);
             cbCategory.TabIndex = 27;
             // 
             // label3
@@ -346,7 +348,7 @@
             label3.ForeColor = Color.LightGray;
             label3.Location = new Point(1210, 194);
             label3.Name = "label3";
-            label3.Size = new Size(56, 25);
+            label3.Size = new Size(47, 21);
             label3.TabIndex = 28;
             label3.Text = "الأصناف";
             // 
@@ -358,7 +360,7 @@
             nudQuntity.Location = new Point(716, 222);
             nudQuntity.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             nudQuntity.Name = "nudQuntity";
-            nudQuntity.Size = new Size(111, 32);
+            nudQuntity.Size = new Size(111, 27);
             nudQuntity.TabIndex = 29;
             nudQuntity.TextAlign = HorizontalAlignment.Center;
             nudQuntity.ValueChanged += nudCategoryCount_ValueChanged;
@@ -369,7 +371,7 @@
             label4.ForeColor = Color.LightGray;
             label4.Location = new Point(774, 194);
             label4.Name = "label4";
-            label4.Size = new Size(53, 25);
+            label4.Size = new Size(45, 21);
             label4.TabIndex = 30;
             label4.Text = "الكمية ";
             // 
@@ -379,7 +381,7 @@
             label8.ForeColor = Color.LightGray;
             label8.Location = new Point(914, 105);
             label8.Name = "label8";
-            label8.Size = new Size(82, 25);
+            label8.Size = new Size(70, 21);
             label8.TabIndex = 32;
             label8.Text = "نوع الفاتورة ";
             // 
@@ -392,7 +394,7 @@
             cbStockType.FormattingEnabled = true;
             cbStockType.Location = new Point(716, 133);
             cbStockType.Name = "cbStockType";
-            cbStockType.Size = new Size(280, 33);
+            cbStockType.Size = new Size(280, 27);
             cbStockType.TabIndex = 31;
             // 
             // label9
@@ -401,7 +403,7 @@
             label9.ForeColor = Color.LightGray;
             label9.Location = new Point(596, 190);
             label9.Name = "label9";
-            label9.Size = new Size(76, 25);
+            label9.Size = new Size(64, 21);
             label9.TabIndex = 34;
             label9.Text = "اسم الخزنة ";
             // 
@@ -414,12 +416,23 @@
             cbStockName.FormattingEnabled = true;
             cbStockName.Location = new Point(398, 218);
             cbStockName.Name = "cbStockName";
-            cbStockName.Size = new Size(280, 33);
+            cbStockName.Size = new Size(280, 27);
             cbStockName.TabIndex = 33;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Droid Arabic Kufi", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.White;
+            label10.Location = new Point(527, 18);
+            label10.Name = "label10";
+            label10.Size = new Size(457, 21);
+            label10.TabIndex = 23;
+            label10.Text = "نظام ادارة المبيعات  |Abdalla Aboaziz |abdallaaboaziz@gmail.com";
             // 
             // FrmSaleOrdercs
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(1372, 877);
@@ -492,5 +505,6 @@
         private ComboBox cbStockType;
         private Label label9;
         private ComboBox cbStockName;
+        private Label label10;
     }
 }

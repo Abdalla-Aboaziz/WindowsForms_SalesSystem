@@ -34,6 +34,7 @@
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
+            label4 = new Label();
             txtID = new TextBox();
             txtName = new TextBox();
             label2 = new Label();
@@ -49,6 +50,7 @@
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCategory).BeginInit();
             SuspendLayout();
             // 
@@ -70,13 +72,14 @@
             label1.ForeColor = Color.FromArgb(4, 150, 255);
             label1.Location = new Point(515, 25);
             label1.Name = "label1";
-            label1.Size = new Size(242, 52);
+            label1.Size = new Size(196, 42);
             label1.TabIndex = 0;
             label1.Text = "شاشة المجموعات";
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(45, 45, 48);
+            panel2.Controls.Add(label4);
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 926);
             panel2.Margin = new Padding(3, 4, 3, 4);
@@ -84,6 +87,17 @@
             panel2.Size = new Size(1190, 73);
             panel2.TabIndex = 1;
             panel2.Paint += panel2_Paint;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Droid Arabic Kufi", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(357, 27);
+            label4.Name = "label4";
+            label4.Size = new Size(457, 21);
+            label4.TabIndex = 23;
+            label4.Text = "نظام ادارة المبيعات  |Abdalla Aboaziz |abdallaaboaziz@gmail.com";
             // 
             // txtID
             // 
@@ -94,7 +108,7 @@
             txtID.Location = new Point(828, 140);
             txtID.Margin = new Padding(3, 4, 3, 4);
             txtID.Name = "txtID";
-            txtID.Size = new Size(228, 32);
+            txtID.Size = new Size(228, 27);
             txtID.TabIndex = 2;
             // 
             // txtName
@@ -105,7 +119,7 @@
             txtName.Location = new Point(225, 140);
             txtName.Margin = new Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
-            txtName.Size = new Size(228, 32);
+            txtName.Size = new Size(228, 27);
             txtName.TabIndex = 3;
             // 
             // label2
@@ -114,7 +128,7 @@
             label2.ForeColor = Color.LightGray;
             label2.Location = new Point(1062, 142);
             label2.Name = "label2";
-            label2.Size = new Size(94, 25);
+            label2.Size = new Size(80, 21);
             label2.TabIndex = 4;
             label2.Text = "رقم المجموعة ";
             label2.Click += label2_Click;
@@ -125,7 +139,7 @@
             label3.ForeColor = Color.LightGray;
             label3.Location = new Point(459, 142);
             label3.Name = "label3";
-            label3.Size = new Size(97, 25);
+            label3.Size = new Size(83, 21);
             label3.TabIndex = 5;
             label3.Text = "اسم المجموعة ";
             // 
@@ -140,7 +154,7 @@
             btnSearch.Location = new Point(391, 396);
             btnSearch.Margin = new Padding(3, 4, 3, 4);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(85, 36);
+            btnSearch.Size = new Size(85, 27);
             btnSearch.TabIndex = 6;
             btnSearch.Text = "بحث";
             btnSearch.UseVisualStyleBackColor = false;
@@ -239,7 +253,7 @@
             txtSearch.Location = new Point(482, 396);
             txtSearch.Margin = new Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(332, 32);
+            txtSearch.Size = new Size(332, 27);
             txtSearch.TabIndex = 12;
             // 
             // dgvCategory
@@ -311,7 +325,7 @@
             // 
             // FrmCategory
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(1190, 999);
@@ -340,6 +354,8 @@
             Load += FrmCategory_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCategory).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -364,5 +380,6 @@
         private DataGridView dgvCategory;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
+        private Label label4;
     }
 }

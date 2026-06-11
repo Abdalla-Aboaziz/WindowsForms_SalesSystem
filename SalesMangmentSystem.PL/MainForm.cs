@@ -1,12 +1,6 @@
 ﻿using SalesMangmentSystem.PL.SalesForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesMangmentSystem.PL
@@ -16,6 +10,20 @@ namespace SalesMangmentSystem.PL
         public MainForm()
         {
             InitializeComponent();
+            ApplyHoverEffects();
+        }
+
+       
+        private void ApplyHoverEffects()
+        {
+            foreach (Control control in tableLayoutPanel1.Controls)
+            {
+                if (control is Button btn)
+                {
+                    btn.MouseEnter += (s, e) => btn.BackColor = Color.FromArgb(4, 150, 255);
+                    btn.MouseLeave += (s, e) => btn.BackColor = Color.FromArgb(60, 60, 65);
+                }
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -48,5 +56,12 @@ namespace SalesMangmentSystem.PL
             frmSaleOrderReport.ShowDialog();
 
         }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            FrmStockDetails frm = new FrmStockDetails();
+            frm.ShowDialog();
+        }
+
+       
     }
 }

@@ -84,7 +84,7 @@
             label1.ForeColor = Color.FromArgb(4, 150, 255);
             label1.Location = new Point(588, 18);
             label1.Name = "label1";
-            label1.Size = new Size(207, 52);
+            label1.Size = new Size(168, 42);
             label1.TabIndex = 0;
             label1.Text = "شاشة الأصناف";
             // 
@@ -105,7 +105,7 @@
             txtID.ForeColor = Color.White;
             txtID.Location = new Point(855, 142);
             txtID.Name = "txtID";
-            txtID.Size = new Size(250, 32);
+            txtID.Size = new Size(250, 27);
             txtID.TabIndex = 2;
             // 
             // txtName
@@ -115,7 +115,7 @@
             txtName.ForeColor = Color.White;
             txtName.Location = new Point(532, 142);
             txtName.Name = "txtName";
-            txtName.Size = new Size(250, 32);
+            txtName.Size = new Size(250, 27);
             txtName.TabIndex = 3;
             // 
             // label2
@@ -124,7 +124,7 @@
             label2.ForeColor = Color.LightGray;
             label2.Location = new Point(1029, 114);
             label2.Name = "label2";
-            label2.Size = new Size(77, 25);
+            label2.Size = new Size(65, 21);
             label2.TabIndex = 4;
             label2.Text = "رقم الصنف ";
             // 
@@ -134,7 +134,7 @@
             label3.ForeColor = Color.LightGray;
             label3.Location = new Point(700, 114);
             label3.Name = "label3";
-            label3.Size = new Size(76, 25);
+            label3.Size = new Size(64, 21);
             label3.TabIndex = 5;
             label3.Text = "اسم الصنف";
             // 
@@ -241,7 +241,7 @@
             txtSearch.ForeColor = Color.White;
             txtSearch.Location = new Point(532, 534);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(365, 32);
+            txtSearch.Size = new Size(365, 27);
             txtSearch.TabIndex = 12;
             // 
             // dgvProduct
@@ -348,8 +348,9 @@
             nudSalePrice.BorderStyle = BorderStyle.FixedSingle;
             nudSalePrice.ForeColor = Color.White;
             nudSalePrice.Location = new Point(855, 229);
+            nudSalePrice.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             nudSalePrice.Name = "nudSalePrice";
-            nudSalePrice.Size = new Size(250, 32);
+            nudSalePrice.Size = new Size(250, 27);
             nudSalePrice.TabIndex = 16;
             // 
             // label4
@@ -358,7 +359,7 @@
             label4.ForeColor = Color.LightGray;
             label4.Location = new Point(1039, 201);
             label4.Name = "label4";
-            label4.Size = new Size(69, 25);
+            label4.Size = new Size(60, 21);
             label4.TabIndex = 19;
             label4.Text = "سعر البيع ";
             // 
@@ -368,7 +369,7 @@
             label5.ForeColor = Color.LightGray;
             label5.Location = new Point(700, 201);
             label5.Name = "label5";
-            label5.Size = new Size(79, 25);
+            label5.Size = new Size(67, 21);
             label5.TabIndex = 21;
             label5.Text = "سعر الشراء ";
             // 
@@ -378,8 +379,9 @@
             nudBuyPrice.BorderStyle = BorderStyle.FixedSingle;
             nudBuyPrice.ForeColor = Color.White;
             nudBuyPrice.Location = new Point(532, 229);
+            nudBuyPrice.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             nudBuyPrice.Name = "nudBuyPrice";
-            nudBuyPrice.Size = new Size(250, 32);
+            nudBuyPrice.Size = new Size(250, 27);
             nudBuyPrice.TabIndex = 20;
             // 
             // label6
@@ -388,7 +390,7 @@
             label6.ForeColor = Color.LightGray;
             label6.Location = new Point(408, 114);
             label6.Name = "label6";
-            label6.Size = new Size(53, 25);
+            label6.Size = new Size(45, 21);
             label6.TabIndex = 23;
             label6.Text = "الكمية ";
             // 
@@ -399,7 +401,7 @@
             nudQuentity.ForeColor = Color.White;
             nudQuentity.Location = new Point(209, 142);
             nudQuentity.Name = "nudQuentity";
-            nudQuentity.Size = new Size(250, 32);
+            nudQuentity.Size = new Size(250, 27);
             nudQuentity.TabIndex = 22;
             // 
             // cbCategory
@@ -411,7 +413,7 @@
             cbCategory.FormattingEnabled = true;
             cbCategory.Location = new Point(209, 228);
             cbCategory.Name = "cbCategory";
-            cbCategory.Size = new Size(250, 33);
+            cbCategory.Size = new Size(250, 27);
             cbCategory.TabIndex = 24;
             cbCategory.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
@@ -421,13 +423,13 @@
             label7.ForeColor = Color.LightGray;
             label7.Location = new Point(386, 201);
             label7.Name = "label7";
-            label7.Size = new Size(69, 25);
+            label7.Size = new Size(59, 21);
             label7.TabIndex = 25;
             label7.Text = "المجموعة ";
             // 
             // FrmProduct
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(1372, 877);
