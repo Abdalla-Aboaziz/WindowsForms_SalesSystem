@@ -4,20 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SalesMangmentSystem.DAL.Models
+namespace SalesMangmentSystem.BLL.Dtos
 {
-    public class Stock
+    public  class StockReadDto
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public double TotalMoney { get; set; }
-
-    }
-    public enum StockName 
-    { 
-        Kashier01,
-        Kashier02,
-        Kashier03,
-
+       
     }
 }

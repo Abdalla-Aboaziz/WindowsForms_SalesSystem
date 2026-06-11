@@ -44,7 +44,16 @@ namespace SalesMangmentSystem.PL.SalesForms
         //
         private void FrmSaleOrdercs_Load(object sender, EventArgs e)
         {
+            var types = new[]
+            {
+                new { Text = "مبيعات", Value = Type.Sale },
+                new { Text = "مشتريات", Value = Type.Purchase },
+                new { Text = "مصروفات", Value = Type.Expenses }
+            };
 
+            cbStockType.DataSource = types;
+            cbStockType.DisplayMember = "Text";
+            cbStockType.ValueMember = "Value";
 
 
             List<ProductReadBasicDto> products = ProductService.GetAllBasicProducts();
@@ -52,10 +61,16 @@ namespace SalesMangmentSystem.PL.SalesForms
             cbCategory.DisplayMember = "Name";
             cbCategory.ValueMember = "ID";
 
+          List<Stock> stocks = StockService.GetAllStocks();
+            cbStockName.DataSource = stocks;
+            cbStockName.DisplayMember = "Name";
+            cbStockName.ValueMember = "ID";
+
             List<CustomerReadBasicDto> customers = CustomerServices.GetAllBasicCustomer();
             cbCustomer.DataSource = customers;
             cbCustomer.DisplayMember = "Name";
             cbCustomer.ValueMember = "ID";
+
 
             txtID.Text = (SaleOrderService.GetLastInsertedID() + 1).ToString();
 
@@ -188,16 +203,16 @@ namespace SalesMangmentSystem.PL.SalesForms
                 // Update Stock Total Money +
                 Stock stock = new Stock
                 {
-                    ID = 1, // Assuming you have only one stock
+                    ID = Convert.ToInt32(cbStockName.SelectedValue),
                     TotalMoney = Convert.ToDouble(nudTotalInvoice.Value),
                 };
                 // Update4 Stock
                 StockDetails stockDetails = new StockDetails
                 {
-                    StockID = 1, // Assuming you have only one stock
+                    StockID = Convert.ToInt32(cbStockName.SelectedValue),
                     Date = DateTime.Now,
                     Total = Convert.ToDouble(nudTotalInvoice.Value),
-                    Type = Type.Sale,
+                    Type = (Type)cbStockType.SelectedValue,
                 };
                 bool IsSaleOrderInserted = SaleOrderService
                     .InsertSaleOrderTransaction(

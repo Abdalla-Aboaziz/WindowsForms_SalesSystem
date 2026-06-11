@@ -46,5 +46,26 @@ namespace SalesMangmentSystem.BLL.Services
             bool Result = DataBaseHelper.ExcuteDML($"DELETE FROM Stocks WHERE ID = {id}");
             return Result;
         }
+        public static List<Stock> GetAllStocks()
+        {
+            List<Stock> Stockes = new List<Stock>();
+            var data = DataBaseHelper.ExcuteSelect("SELECT * FROM Stock");
+
+          
+            if (data != null && data.Rows.Count > 0)
+            {
+                foreach (System.Data.DataRow item in data.Rows)
+                {
+                    Stock stock = new Stock()
+                    {
+                        ID = Convert.ToInt32(item["ID"]),
+                        Name = item["Name"].ToString(),
+                        TotalMoney = Convert.ToDouble(item["TotalMoney"])
+                    };
+                    Stockes.Add(stock);
+                }
+            }
+            return Stockes;
+        }
     }
     }

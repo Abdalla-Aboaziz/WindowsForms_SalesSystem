@@ -1,4 +1,5 @@
-﻿using SalesMangmentSystem.DAL;
+﻿using SalesMangmentSystem.BLL.Dtos;
+using SalesMangmentSystem.DAL;
 using SalesMangmentSystem.DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -29,5 +30,7 @@ namespace SalesMangmentSystem.BLL.Services
             bool Result = DataBaseHelper.ExcuteDML($"DELETE FROM StockDetails WHERE ID = {id}");
             return Result;
         }
+
+       
     }
 }

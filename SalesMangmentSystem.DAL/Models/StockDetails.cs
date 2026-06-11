@@ -10,7 +10,7 @@ namespace SalesMangmentSystem.DAL.Models
     {
         Sale,
         Purchase,
-        Ecpenses
+        Expenses
     }
     public class StockDetails
     {

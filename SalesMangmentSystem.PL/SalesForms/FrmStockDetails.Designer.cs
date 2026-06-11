@@ -1,6 +1,6 @@
 ﻿namespace SalesMangmentSystem.PL.SalesForms
 {
-    partial class FrmSaleOrdercs
+    partial class FrmStockDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -32,66 +32,44 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
-            btnSave = new Button();
             label1 = new Label();
             panel2 = new Panel();
             nudTotalInvoice = new NumericUpDown();
             label5 = new Label();
-            txtID = new TextBox();
             label2 = new Label();
-            btnAdd = new Button();
-            btnDelete = new Button();
             dgvSaleOrder = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
+            SalePrice = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             label6 = new Label();
-            cbCustomer = new ComboBox();
             label7 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            cbCategory = new ComboBox();
+            DtpFromDate = new DateTimePicker();
+            txtOrderID = new TextBox();
+            DtpToDate = new DateTimePicker();
+            btnsearch1 = new Button();
+            btnsearch2 = new Button();
             label3 = new Label();
-            nudQuntity = new NumericUpDown();
+            txtSearchCustomer = new TextBox();
             label4 = new Label();
-            label8 = new Label();
-            cbStockType = new ComboBox();
-            label9 = new Label();
-            cbStockName = new ComboBox();
+            cbByOrderID = new CheckBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudTotalInvoice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvSaleOrder).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudQuntity).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(45, 45, 48);
-            panel1.Controls.Add(btnSave);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1372, 78);
             panel1.TabIndex = 0;
-            // 
-            // btnSave
-            // 
-            btnSave.BackColor = Color.FromArgb(40, 167, 69);
-            btnSave.Cursor = Cursors.Hand;
-            btnSave.FlatAppearance.BorderSize = 0;
-            btnSave.FlatStyle = FlatStyle.Flat;
-            btnSave.Font = new Font("Droid Arabic Kufi", 10F, FontStyle.Bold);
-            btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(32, 14);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(160, 50);
-            btnSave.TabIndex = 30;
-            btnSave.Text = "حفظ الفاتورة";
-            btnSave.UseVisualStyleBackColor = false;
-            btnSave.Click += btnSave_Click;
             // 
             // label1
             // 
@@ -100,9 +78,9 @@
             label1.ForeColor = Color.FromArgb(4, 150, 255);
             label1.Location = new Point(588, 18);
             label1.Name = "label1";
-            label1.Size = new Size(226, 52);
+            label1.Size = new Size(206, 52);
             label1.TabIndex = 0;
-            label1.Text = "شاشة المبيعات ";
+            label1.Text = "حركات الخزائن ";
             label1.Click += label1_Click;
             // 
             // panel2
@@ -142,58 +120,14 @@
             label5.TabIndex = 21;
             label5.Text = "إجمالي الفاتورة :";
             // 
-            // txtID
-            // 
-            txtID.BackColor = Color.FromArgb(60, 60, 65);
-            txtID.BorderStyle = BorderStyle.FixedSingle;
-            txtID.Enabled = false;
-            txtID.ForeColor = Color.White;
-            txtID.Location = new Point(1050, 130);
-            txtID.Name = "txtID";
-            txtID.Size = new Size(220, 32);
-            txtID.TabIndex = 2;
-            // 
             // label2
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.LightGray;
             label2.Location = new Point(1191, 102);
             label2.Name = "label2";
-            label2.Size = new Size(85, 25);
+            label2.Size = new Size(0, 25);
             label2.TabIndex = 4;
-            label2.Text = "رقم الفاتورة ";
-            // 
-            // btnAdd
-            // 
-            btnAdd.BackColor = Color.FromArgb(4, 150, 255);
-            btnAdd.Cursor = Cursors.Hand;
-            btnAdd.FlatAppearance.BorderSize = 0;
-            btnAdd.FlatStyle = FlatStyle.Flat;
-            btnAdd.Font = new Font("Droid Arabic Kufi", 10F, FontStyle.Bold);
-            btnAdd.ForeColor = Color.White;
-            btnAdd.Location = new Point(193, 210);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(130, 45);
-            btnAdd.TabIndex = 7;
-            btnAdd.Text = "إضافة صنف";
-            btnAdd.UseVisualStyleBackColor = false;
-            btnAdd.Click += btnAdd_Click;
-            // 
-            // btnDelete
-            // 
-            btnDelete.BackColor = Color.FromArgb(220, 53, 69);
-            btnDelete.Cursor = Cursors.Hand;
-            btnDelete.FlatAppearance.BorderSize = 0;
-            btnDelete.FlatStyle = FlatStyle.Flat;
-            btnDelete.Font = new Font("Droid Arabic Kufi", 10F, FontStyle.Bold);
-            btnDelete.ForeColor = Color.White;
-            btnDelete.Location = new Point(43, 210);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(130, 45);
-            btnDelete.TabIndex = 9;
-            btnDelete.Text = "حذف صنف";
-            btnDelete.UseVisualStyleBackColor = false;
-            btnDelete.Click += btnDelete_Click;
             // 
             // dgvSaleOrder
             // 
@@ -206,14 +140,14 @@
             dgvSaleOrder.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(45, 45, 48);
-            dataGridViewCellStyle1.Font = new Font("Droid Arabic Kufi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.Font = new Font("Droid Arabic Kufi", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = Color.White;
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(45, 45, 48);
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvSaleOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvSaleOrder.ColumnHeadersHeight = 40;
-            dgvSaleOrder.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column5, Column3, Column4 });
+            dgvSaleOrder.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column5, Column3, SalePrice, Column4 });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(30, 30, 30);
             dataGridViewCellStyle2.Font = new Font("Droid Arabic Kufi", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -247,24 +181,24 @@
             // 
             // Column1
             // 
-            Column1.DataPropertyName = "ProductID";
-            Column1.HeaderText = "رقم الصنف";
+            Column1.DataPropertyName = "saleorderID";
+            Column1.HeaderText = "رقم الفاتورة";
             Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
             Column1.ReadOnly = true;
             // 
             // Column2
             // 
-            Column2.DataPropertyName = "ProductName";
-            Column2.HeaderText = "اسم الصنف";
+            Column2.DataPropertyName = "CustomerName";
+            Column2.HeaderText = "اسم العميل ";
             Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
             Column2.ReadOnly = true;
             // 
             // Column5
             // 
-            Column5.DataPropertyName = "ProductPrice";
-            Column5.HeaderText = "سعر البيع ";
+            Column5.DataPropertyName = "ProductName";
+            Column5.HeaderText = "اسم الصنف";
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
             Column5.ReadOnly = true;
@@ -276,6 +210,14 @@
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
             Column3.ReadOnly = true;
+            // 
+            // SalePrice
+            // 
+            SalePrice.DataPropertyName = "ProductPrice";
+            SalePrice.HeaderText = "سعر البيع ";
+            SalePrice.MinimumWidth = 6;
+            SalePrice.Name = "SalePrice";
+            SalePrice.ReadOnly = true;
             // 
             // Column4
             // 
@@ -289,175 +231,168 @@
             // 
             label6.AutoSize = true;
             label6.ForeColor = Color.LightGray;
-            label6.Location = new Point(276, 98);
+            label6.Location = new Point(1034, 102);
             label6.Name = "label6";
-            label6.Size = new Size(46, 25);
+            label6.Size = new Size(75, 25);
             label6.TabIndex = 23;
-            label6.Text = "التاريخ";
-            // 
-            // cbCustomer
-            // 
-            cbCustomer.BackColor = Color.FromArgb(60, 60, 65);
-            cbCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbCustomer.FlatStyle = FlatStyle.Flat;
-            cbCustomer.ForeColor = Color.White;
-            cbCustomer.FormattingEnabled = true;
-            cbCustomer.Location = new Point(398, 129);
-            cbCustomer.Name = "cbCustomer";
-            cbCustomer.Size = new Size(280, 33);
-            cbCustomer.TabIndex = 24;
-            cbCustomer.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            label6.Text = "من تاريخ  : ";
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.ForeColor = Color.LightGray;
-            label7.Location = new Point(628, 101);
+            label7.Location = new Point(664, 102);
             label7.Name = "label7";
-            label7.Size = new Size(50, 25);
+            label7.Size = new Size(76, 25);
             label7.TabIndex = 25;
-            label7.Text = "العميل";
+            label7.Text = "الي تاريخ  :";
             // 
-            // dateTimePicker1
+            // DtpFromDate
             // 
-            dateTimePicker1.CalendarForeColor = Color.White;
-            dateTimePicker1.CalendarMonthBackground = Color.FromArgb(60, 60, 65);
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(43, 126);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(280, 32);
-            dateTimePicker1.TabIndex = 26;
+            DtpFromDate.CalendarForeColor = Color.White;
+            DtpFromDate.CalendarMonthBackground = Color.FromArgb(60, 60, 65);
+            DtpFromDate.Format = DateTimePickerFormat.Short;
+            DtpFromDate.Location = new Point(872, 130);
+            DtpFromDate.Name = "DtpFromDate";
+            DtpFromDate.Size = new Size(237, 32);
+            DtpFromDate.TabIndex = 26;
             // 
-            // cbCategory
+            // txtOrderID
             // 
-            cbCategory.BackColor = Color.FromArgb(60, 60, 65);
-            cbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbCategory.FlatStyle = FlatStyle.Flat;
-            cbCategory.ForeColor = Color.White;
-            cbCategory.FormattingEnabled = true;
-            cbCategory.Location = new Point(850, 222);
-            cbCategory.Name = "cbCategory";
-            cbCategory.Size = new Size(420, 33);
-            cbCategory.TabIndex = 27;
+            txtOrderID.BackColor = Color.FromArgb(60, 60, 65);
+            txtOrderID.BorderStyle = BorderStyle.FixedSingle;
+            txtOrderID.Enabled = false;
+            txtOrderID.ForeColor = Color.White;
+            txtOrderID.Location = new Point(872, 230);
+            txtOrderID.Name = "txtOrderID";
+            txtOrderID.Size = new Size(237, 32);
+            txtOrderID.TabIndex = 2;
+            txtOrderID.TextChanged += txtOrderID_TextChanged;
+            // 
+            // DtpToDate
+            // 
+            DtpToDate.CalendarForeColor = Color.White;
+            DtpToDate.CalendarMonthBackground = Color.FromArgb(60, 60, 65);
+            DtpToDate.Format = DateTimePickerFormat.Short;
+            DtpToDate.Location = new Point(390, 130);
+            DtpToDate.Name = "DtpToDate";
+            DtpToDate.Size = new Size(350, 32);
+            DtpToDate.TabIndex = 29;
+            // 
+            // btnsearch1
+            // 
+            btnsearch1.BackColor = Color.FromArgb(40, 167, 69);
+            btnsearch1.Cursor = Cursors.Hand;
+            btnsearch1.FlatAppearance.BorderSize = 0;
+            btnsearch1.FlatStyle = FlatStyle.Flat;
+            btnsearch1.Font = new Font("Droid Arabic Kufi", 10F, FontStyle.Bold);
+            btnsearch1.ForeColor = Color.White;
+            btnsearch1.Location = new Point(1162, 131);
+            btnsearch1.Name = "btnsearch1";
+            btnsearch1.Size = new Size(119, 32);
+            btnsearch1.TabIndex = 30;
+            btnsearch1.Text = "بحث";
+            btnsearch1.UseVisualStyleBackColor = false;
+            btnsearch1.Click += btnsearch1_Click;
+            // 
+            // btnsearch2
+            // 
+            btnsearch2.BackColor = Color.FromArgb(40, 167, 69);
+            btnsearch2.Cursor = Cursors.Hand;
+            btnsearch2.FlatAppearance.BorderSize = 0;
+            btnsearch2.FlatStyle = FlatStyle.Flat;
+            btnsearch2.Font = new Font("Droid Arabic Kufi", 10F, FontStyle.Bold);
+            btnsearch2.ForeColor = Color.White;
+            btnsearch2.Location = new Point(1162, 230);
+            btnsearch2.Name = "btnsearch2";
+            btnsearch2.Size = new Size(119, 32);
+            btnsearch2.TabIndex = 31;
+            btnsearch2.Text = "بحث";
+            btnsearch2.UseVisualStyleBackColor = false;
+            btnsearch2.Click += btnsearch2_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.LightGray;
-            label3.Location = new Point(1210, 194);
+            label3.Location = new Point(1024, 202);
             label3.Name = "label3";
-            label3.Size = new Size(56, 25);
-            label3.TabIndex = 28;
-            label3.Text = "الأصناف";
+            label3.Size = new Size(85, 25);
+            label3.TabIndex = 32;
+            label3.Text = "رقم الفاتورة ";
+            label3.Click += label3_Click;
             // 
-            // nudQuntity
+            // txtSearchCustomer
             // 
-            nudQuntity.BackColor = Color.FromArgb(60, 60, 65);
-            nudQuntity.BorderStyle = BorderStyle.FixedSingle;
-            nudQuntity.ForeColor = Color.White;
-            nudQuntity.Location = new Point(716, 222);
-            nudQuntity.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
-            nudQuntity.Name = "nudQuntity";
-            nudQuntity.Size = new Size(111, 32);
-            nudQuntity.TabIndex = 29;
-            nudQuntity.TextAlign = HorizontalAlignment.Center;
-            nudQuntity.ValueChanged += nudCategoryCount_ValueChanged;
+            txtSearchCustomer.BackColor = Color.FromArgb(60, 60, 65);
+            txtSearchCustomer.BorderStyle = BorderStyle.FixedSingle;
+            txtSearchCustomer.Enabled = false;
+            txtSearchCustomer.ForeColor = Color.White;
+            txtSearchCustomer.Location = new Point(390, 230);
+            txtSearchCustomer.Name = "txtSearchCustomer";
+            txtSearchCustomer.Size = new Size(350, 32);
+            txtSearchCustomer.TabIndex = 33;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.ForeColor = Color.LightGray;
-            label4.Location = new Point(774, 194);
+            label4.Location = new Point(662, 202);
             label4.Name = "label4";
-            label4.Size = new Size(53, 25);
-            label4.TabIndex = 30;
-            label4.Text = "الكمية ";
+            label4.Size = new Size(78, 25);
+            label4.TabIndex = 34;
+            label4.Text = "اسم العميل";
+            label4.Click += label4_Click;
             // 
-            // label8
+            // cbByOrderID
             // 
-            label8.AutoSize = true;
-            label8.ForeColor = Color.LightGray;
-            label8.Location = new Point(914, 105);
-            label8.Name = "label8";
-            label8.Size = new Size(82, 25);
-            label8.TabIndex = 32;
-            label8.Text = "نوع الفاتورة ";
+            cbByOrderID.AutoSize = true;
+            cbByOrderID.BackColor = Color.Transparent;
+            cbByOrderID.ForeColor = SystemColors.ButtonHighlight;
+            cbByOrderID.Location = new Point(256, 230);
+            cbByOrderID.Name = "cbByOrderID";
+            cbByOrderID.Size = new Size(112, 29);
+            cbByOrderID.TabIndex = 35;
+            cbByOrderID.Text = "برقم الفاتورة ";
+            cbByOrderID.UseVisualStyleBackColor = false;
+            cbByOrderID.CheckedChanged += cbByOrderID_CheckedChanged;
             // 
-            // cbStockType
-            // 
-            cbStockType.BackColor = Color.FromArgb(60, 60, 65);
-            cbStockType.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbStockType.FlatStyle = FlatStyle.Flat;
-            cbStockType.ForeColor = Color.White;
-            cbStockType.FormattingEnabled = true;
-            cbStockType.Location = new Point(716, 133);
-            cbStockType.Name = "cbStockType";
-            cbStockType.Size = new Size(280, 33);
-            cbStockType.TabIndex = 31;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.ForeColor = Color.LightGray;
-            label9.Location = new Point(596, 190);
-            label9.Name = "label9";
-            label9.Size = new Size(76, 25);
-            label9.TabIndex = 34;
-            label9.Text = "اسم الخزنة ";
-            // 
-            // cbStockName
-            // 
-            cbStockName.BackColor = Color.FromArgb(60, 60, 65);
-            cbStockName.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbStockName.FlatStyle = FlatStyle.Flat;
-            cbStockName.ForeColor = Color.White;
-            cbStockName.FormattingEnabled = true;
-            cbStockName.Location = new Point(398, 218);
-            cbStockName.Name = "cbStockName";
-            cbStockName.Size = new Size(280, 33);
-            cbStockName.TabIndex = 33;
-            // 
-            // FrmSaleOrdercs
+            // FrmStockDetails
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(1372, 877);
-            Controls.Add(label9);
-            Controls.Add(cbStockName);
-            Controls.Add(label8);
-            Controls.Add(cbStockType);
+            Controls.Add(cbByOrderID);
             Controls.Add(label4);
-            Controls.Add(nudQuntity);
+            Controls.Add(txtSearchCustomer);
             Controls.Add(label3);
-            Controls.Add(cbCategory);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(btnsearch2);
+            Controls.Add(btnsearch1);
+            Controls.Add(DtpToDate);
+            Controls.Add(DtpFromDate);
             Controls.Add(label7);
-            Controls.Add(cbCustomer);
             Controls.Add(label6);
             Controls.Add(dgvSaleOrder);
-            Controls.Add(btnDelete);
-            Controls.Add(btnAdd);
             Controls.Add(label2);
-            Controls.Add(txtID);
+            Controls.Add(txtOrderID);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Font = new Font("Droid Arabic Kufi", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
             Margin = new Padding(4, 3, 4, 3);
-            Name = "FrmSaleOrdercs";
+            Name = "FrmStockDetails";
             RightToLeft = RightToLeft.Yes;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "شاشة المبيعات";
-            Load += FrmSaleOrdercs_Load;
+            Load += FrmStockDetails_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudTotalInvoice).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvSaleOrder).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudQuntity).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -467,30 +402,26 @@
         private Panel panel1;
         private Panel panel2;
         private Label label1;
-        private TextBox txtID;
         private Label label2;
-        private Button btnAdd;
-        private Button btnDelete;
         private DataGridView dgvSaleOrder;
         private Label label5;
         private NumericUpDown nudTotalInvoice;
         private Label label6;
-        private ComboBox cbCustomer;
         private Label label7;
-        private DateTimePicker dateTimePicker1;
-        private ComboBox cbCategory;
+        private DateTimePicker DtpFromDate;
+        private TextBox txtOrderID;
+        private DateTimePicker DtpToDate;
+        private Button btnsearch1;
+        private Button btnsearch2;
         private Label label3;
-        private NumericUpDown nudQuntity;
-        private Button btnSave;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn SalePrice;
         private DataGridViewTextBoxColumn Column4;
+        private TextBox txtSearchCustomer;
         private Label label4;
-        private Label label8;
-        private ComboBox cbStockType;
-        private Label label9;
-        private ComboBox cbStockName;
+        private CheckBox cbByOrderID;
     }
 }

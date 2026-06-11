@@ -1,3 +1,4 @@
+using SalesMangmentSystem.BLL.Services;
 using SalesMangmentSystem.PL.SalesForms;
 
 namespace SalesMangmentSystem.PL
@@ -13,7 +14,8 @@ namespace SalesMangmentSystem.PL
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            AuthenticationService.SeedData();
+            Application.Run(new FrmAuthentication());
         }
     }
 }
